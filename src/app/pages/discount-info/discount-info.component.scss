@@ -1,0 +1,59 @@
+@import "../../shared/style/variables";
+
+.container{
+   width: 900px;
+   margin: 10px auto;
+   .title{
+      width: 900px;
+      height: 180px;
+      margin-bottom: 50px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $main-color;
+      h1{
+         height: 50px;
+         line-height: 50px;
+         font-size: 40px;
+         font-weight: bold;
+         border-top: 4px solid black;
+      }
+   }
+   .text{
+      width: 900px;
+      margin-bottom: 50px;
+      ul{
+         width: 900px;
+         list-style: none;
+         li{
+            width: 900px;
+            height: 20px;
+            font-size: 16px;
+            margin: 5px 10px;
+            padding-left: 10px;
+            position: relative;
+            &::before{
+               content:'';
+               position: absolute;
+               top: 0;
+               left: -10px;
+               width: 8px;
+               height: 8px;
+               border-radius: 50%;
+               border: 1px solid $main-color;
+            }
+            &::after{
+               content: '';
+               position: absolute;
+               top: 2px;
+               left: -8px;
+               width: 6px;
+               height: 6px;
+               border-radius: 50%;
+               background-color: $main-color;
+            }
+         }
+      }
+   }
+}

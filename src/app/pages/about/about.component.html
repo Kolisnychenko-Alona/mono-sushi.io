@@ -1,0 +1,75 @@
+<div class="container">
+   <div class="space"></div>
+   <h1>Про нас</h1>
+   <div class="info">
+      <h2>Monosushi – доставка неймовірно смачних суші у Львові.</h2>
+      <p>Головний пріоритет – висока якість їжі та сервісу. Ми – команда професіоналів, яка щодня працює для
+         Вас. Якість та Швидкість! – це два основних пріоритети в роботі команди. В першу чергу звичайно ж
+         Якість. Суші готуються без затримок, одразу ж після Вашого замовлення. А завдяки сучасним технологіям та
+         відповідальному навчанню працівників, свіжі страви можливо доставляти до 59 хв в 75% замовлень.</p>
+      <ul>
+         <li>висока якість їжі та сервісу</li>
+         <li>команда професіоналів</li>
+         <li>сучасні технології приготування</li>
+      </ul>
+   </div>
+   <div class="about">
+      <div class="about-section">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/07/img_1127-scaled-568x568.jpg" alt="rolls">
+         <div class="text">
+            <h2>Привіт! Познайомимось?</h2>
+            <p>Monosushi – це доставка найсмачніших суші у Львові, яка була створена командою перфекціоністів. Двоє друзів, які обожнюють роли вирішили створити продукт, якого їм не вистачало на ринку Львова. Продукт, в якому ідеальним буде все: смак, упакування, сервіс і все це за лояльною ціною!</p>
+         </div>
+      </div>
+      <div class="about-section">
+         <div class="text">
+            <h2>Наш пріоритет - ваша посмішка від задоволення</h2>
+            <p> <b>Monosushi</b>– це доставка одного (mono) продукту. Роли вже давно стали рядовою стравою, проте процес їх приготування всеодно залишається цілим мистецтвом. Суші потрібно готувати за чіткою технологією суворо дотримуючись традицій. І в цьому ми справжні експерти! Сумніваєтесь? Тоді замовляйте безкоштовну доставку Monosushi і насолоджуйтесь.</p>
+         </div>
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/07/img_8051-scaled-568x568.jpeg" alt="rolls">
+      </div>
+   </div>
+   <div class="priorities">
+      <h2>Наші переваги</h2>
+      <div class="priorities-icons">
+         <div class="icon">
+            <div class="icon-img">
+               <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/advantages-img-1.svg" alt="">
+            </div>
+            <h3>Свіжі продукти</h3>
+            <p>Наші інгрідієнти ще вчора плавали у морі, а сьогодні вже у Ваших сушиках</p>
+         </div>
+         <div class="line"></div>
+         <div class="icon">
+            <div class="icon-img">
+               <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/advantages-img-2.svg" alt="">
+            </div>
+            <h3>Неймовірний смак</h3>
+            <p>Ми створили сушики, які змусять Ваші рецептори вибухнути від насолоди</p>
+         </div>
+         <div class="line"></div>
+         <div class="icon">
+            <div class="icon-img">
+               <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/advantages-img-3.svg" alt="">
+            </div>
+            <h3>Великі порції</h3>
+            <p>Ми віднайшли ідеальні порії ролів та завжди дотримуємось грамажу вказаного на сайті</p>
+         </div>
+         <div class="line"></div>
+         <div class="icon">
+            <div class="icon-img">
+               <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/advantages-img-4.svg" alt="">
+            </div>
+            <h3>Чистота на кухні</h3>
+            <p>Ми, як ніхто інший, розуміємо, що морепродукти потребують абсолютної чистоти на кухні</p>
+         </div>
+      </div>
+   </div>
+   <div class="questions"> 
+      <h2>Популярні запитання</h2>
+      <div class="questions-line"></div>
+      <div class="questions-block" *ngFor="let item of questions">
+         <app-question [question]="[item.question, item.answer]"></app-question>        
+      </div>
+   </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+   <div class="navbar">
+      <div class="navbar-categories">
+         <div class="navbar-categories-select" [routerLink]="[ 'discount' ]" routerLinkActive="active">Акції</div>
+         <div class="navbar-categories-select" [routerLink]="[ 'category' ]" routerLinkActive="active">Категорії</div>
+         <div class="navbar-categories-select" [routerLink]="[ 'product' ]" routerLinkActive="active">Товари</div>
+         <div class="navbar-categories-select" [routerLink]="[ 'orders' ]" routerLinkActive="active">Замовлення</div>
+      </div>
+      <div class="navbar-button">
+         <button>ВИХІД</button>
+      </div>
+   </div>
+   <div class="content">
+      <router-outlet></router-outlet>
+   </div>
+</div>

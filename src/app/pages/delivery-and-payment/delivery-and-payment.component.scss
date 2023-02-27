@@ -1,0 +1,133 @@
+@import '../../shared/style/variables';
+
+.green{
+   color: $green;
+}
+.yellow{
+   color: $yellow;
+}
+
+.container{
+   width: 90%;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   .space{
+      width: 400px;
+      height: 5px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: $main-color;
+   }
+   h1{
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 30px;
+   }
+   .zone{
+      width: 1070px;
+      display: flex;
+      margin-bottom: 50px;
+      justify-content: space-between;
+      align-items: center;
+      &-color{
+         width: 520px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         div{
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h3{
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            }
+            p{
+               text-align: center;
+               line-height: 30px;
+               margin-bottom: 10px;
+            }
+         }
+      }
+   }
+   .map{
+      width: 900px;
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      map{
+         width: 100%;
+         margin-bottom: 50px;
+      }
+      &-info{
+         width: 800px;
+         p{
+            line-height: 30px;
+            margin-bottom: 10px;
+         }
+      }
+   }
+   .payment-container{
+      width: 800px;
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h2{
+         font-size: 38px;
+         font-weight: bold;
+         margin-bottom: 40px;
+      }
+      .payment{
+         width: 700px;
+         height: 150px;
+         display: flex;
+         margin-bottom: 50px;
+         justify-content: space-between;
+         .line{
+            width: 2px;
+            height: 150px;
+            margin: 0 10px;
+            background-color: rgb(231, 230, 230);
+         }
+         &-way{
+            width: 330px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            &-img{
+               width: 60px;
+               height: 60px;
+               background-color: $main-color;
+               border-radius: 10px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+            }
+            &-info{
+               width: 250px;
+               text-align: justify;
+               line-height: 30px;
+               h4{
+                  font-size: 20px;
+                  font-weight: bold;
+                  margin-bottom: 10px;
+               }
+            }
+         }
+      }
+      .info{
+         width: 100%;
+         p{
+            line-height: 30px;
+            margin-bottom: 20px;
+         }
+      }
+   }
+
+}

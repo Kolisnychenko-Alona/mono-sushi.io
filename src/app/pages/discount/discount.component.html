@@ -1,0 +1,16 @@
+<div class="container">
+   <h1>Акції</h1>
+   <div class="discounts">
+      <div class="discounts-one" *ngFor="let discount of userDiscounts "  [routerLink]="[ '/discount', discount.id ]">
+         <div class="discounts-one-hover">
+            <div class="discounts-one-hover-image">
+               <img class="discounts-one-hover-image-item" [src]="discount.imagePath">
+            </div>
+            <h2>{{discount.name}}</h2>
+         </div>
+         <div class="discounts-one-btn">
+            <button>Дізнатися більше</button>
+         </div>
+      </div>
+   </div>
+</div>

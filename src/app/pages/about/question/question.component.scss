@@ -1,0 +1,101 @@
+@import "../../../shared/style/variables";
+
+@keyframes scale {
+   0% {
+      height: 50px;
+   }
+   100% {
+      height: 200px;
+   }
+}
+@keyframes scaleUp {
+   0% {
+      height: 200px;
+   }
+   100% {
+      height: 50px;
+   }
+}
+@keyframes rotate {
+   0% {
+      transform: rotate(-45deg);
+   }
+   100% {
+      transform: rotate(-225deg);
+   }
+}
+@keyframes rotateUp {
+   0% {
+      transform: rotate(-225deg);
+   }
+   100% {
+      transform: rotate(-45deg);
+   }
+}
+
+.question {
+   width: 100%;
+   height: 50px;
+   padding-bottom: 20px;
+   overflow: hidden;
+   h3 {
+      font-size: 18px;
+      font-weight: bold;
+      height: 50px;
+      line-height: 70px;
+      color: #5a5a5a;
+      margin-bottom: 20px;
+      position: relative;
+      &::after {
+         content: "";
+         width: 8px;
+         height: 8px;
+         border-left: 2px solid #5a5a5a;
+         border-bottom: 2px solid #5a5a5a;
+         transform: rotate(-45deg);
+         font-weight: normal;
+         position: absolute;
+         top: 30px;
+         right: 10px;
+      }
+      &:hover{
+         color: black;
+         cursor: pointer;
+         &::after{
+            border-color: $main-color;
+         }
+      }
+   }
+   p {
+      line-height: 25px;
+      margin-bottom: 10px;
+   }
+}
+
+.line{
+         width: 100%;
+         height: 2px;
+         background-color: lightgray;
+      }
+
+
+.scaleDown {
+   & > h3 {
+      color: black;
+      cursor: pointer;
+      &::after {
+         animation: rotate 0.5s forwards;
+      }
+   }
+   animation: scale 0.5s forwards;
+}
+.scaleUp {
+   & > h3 {
+      color: #5a5a5a;
+      cursor: pointer;
+      &::after {
+         animation: rotateUp 0.5s forwards;
+      }
+   }
+   animation: scaleUp 0.5s forwards;
+}

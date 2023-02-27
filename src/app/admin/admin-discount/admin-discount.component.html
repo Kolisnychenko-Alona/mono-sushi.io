@@ -1,0 +1,46 @@
+<div class="container">
+   <div class="button">
+      <button (mousedown)="down()" [class.down]="isDown" (mouseup)="up()" (click)="add()" [disabled]="editStatus" >ДОДАТИ АКЦІЮ</button>
+   </div>
+   <form class="adding" *ngIf="isAdding" [formGroup]="discountForm" (ngSubmit)="saveDiscount()" >
+      <div class="adding-input">
+         <div class="adding-input-fields">
+            <div class="adding-input-fields-top">
+               <input type="text" name="name" formControlName="name" placeholder="*Назва">
+               <input type="text" name="title" formControlName="title" placeholder="*Заголовок">
+            </div>
+            <div class="adding-input-fields-bottom">
+               <textarea name="text" formControlName="text" placeholder="*Опис"></textarea>
+               <input type="file" formControlName="imagePath" (change)="upload($event)">
+            </div>
+         </div>
+         <ng-container *ngIf="isUploaded">
+            <img class="adding-input-image" [src]="valueByControl('imagePath')" alt="">
+            <button type="button" class="delImage" (click)="deleteImage()">X</button>
+         </ng-container>
+      </div>
+      <button type="submit" [disabled]="discountForm.invalid">{{ !editStatus ? 'Додати' : 'Зберегти' }}</button>
+   </form>
+   <table>
+      <thead>
+         <tr>
+            <th>Дата</th>
+            <th>Назва</th>
+            <th>Заголовок</th>
+            <th>Опис</th>
+            <th>Картинка</th>
+            <th>Дії</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let discount of adminDiscounts">
+            <td>{{date | date:'M.YYYY'}}</td>
+            <td>{{discount.name}}</td>
+            <td>{{discount.title}}</td>
+            <td>{{discount.text | slice:0:50}} <span *ngIf="discount.text.length > 51">...</span></td>
+            <td><img [src]="discount.imagePath"></td>
+            <td><button (click)="editDiscount(discount)">Редагувати</button><button (click)="deleteDiscount(discount)">Видалити</button></td>
+         </tr>
+      </tbody>
+   </table>
+</div>

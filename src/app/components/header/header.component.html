@@ -1,0 +1,60 @@
+<div class="header">
+   <div [routerLink]="[ '/home']" class="header-logo">
+      <img src="https://monosushi.com.ua/wp-content/uploads/2021/06/logo.svg" alt="monosushi">
+   </div>
+   <div class="header-nav">
+         <ul class="header-nav-menu">
+            <li  [routerLink]="[ '/discount' ]"  class="header-nav-menu-item" >
+               <div>
+                  <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/nav-img-gift.svg">
+                  <p>Акції</p>
+               </div>
+            </li>
+            <li *ngFor="let category of userCategories" [routerLink]="[ '/product/category.path']" class="header-nav-menu-item">
+               <div>
+                  <img [src]="category.imagePath">
+                  <p>{{category.name}}</p>
+               </div>
+            </li>
+         </ul>
+   </div>
+   <div class="header-burger"  >
+      <div class="header-burger-button" [class.hoverOff]="isBurger" (click)="burger()">
+         <span [class.rotate1]="isBurger" [class.rotate1Off]="!isBurger"></span>
+         <span [class.disappear]="isBurger" [class.appear]="!isBurger"></span>
+         <span [class.rotate2]="isBurger" [class.rotate2Off]="!isBurger"></span>
+      </div>
+      <div class="header-burger-list" [class.burgerOn]="isBurger" [class.burgerOff]="!isBurger" *ngIf="isBurger">
+         <ul>
+            <li [routerLink]="[ '/deliveryAndPayment']">Доставка та оплата</li>
+            <li [routerLink]="[ '/about']" >Про нас</li>
+            <li [routerLink]="[ '/discount']">Акції</li>
+         </ul>
+      </div>  
+   </div>
+   <div class="header-call-back">
+      <button>
+         <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/phone.svg" alt="phone">
+         <span>Ми зателефонуємо</span>
+      </button>
+   </div>
+   <div class="header-info">
+      <p><b>(097) 878 08 37</b></p>
+      <p>Працюємо з <b>11:00</b> до <b>22:30</b></p>
+   </div>
+   <div class="header-user" [routerLink]="[ '/admin']" >
+      <div>
+         <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
+      </div>  
+   </div>
+   <div [routerLink]="[ '/checkout']" class="header-basket">
+      <i>
+         <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/basket.svg" alt="basket">
+         <span>0</span>
+      </i>
+      <div class="header-basket-price">
+         <b>0</b><span>грн</span>
+      </div>
+
+   </div>
+</div>

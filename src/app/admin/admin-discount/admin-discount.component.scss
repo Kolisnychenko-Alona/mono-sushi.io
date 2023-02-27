@@ -1,0 +1,173 @@
+@import "../../shared/style/variables";
+
+.container {
+   width: 100%;
+   .button {
+      width: 100%;
+      height: 60px;
+      margin-bottom: 40px;
+      button {
+         width: 300px;
+         height: 60px;
+         border: 3px solid $main-color;
+         border-radius: 10px;
+         background-color: white;
+         font-size: 16px;
+         font-weight: bold;
+         &:hover {
+            background-color: $main-color;
+            transition: 0.35s;
+            cursor: pointer;
+         }
+      }
+   }
+   .adding {
+      width: 1000px;
+      margin-bottom: 30px;
+      &-input {
+         width: 1000px;
+         display: flex;
+         justify-content: flex-start;
+         align-items: flex-end;
+         &-fields {
+            width: 660px;
+            &-top {
+               width: 660px;
+               height: 70px;
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               margin-bottom: 10px;
+               input {
+                  // display: block;
+                  width: 300px;
+                  height: 50px;
+                  font-size: 16px;
+                  padding-left: 20px;
+                  border-radius: 10px;
+                  border: 1px solid $gray;
+               }
+            }
+            &-bottom {
+               width: 660px;
+               height: 200px;
+               display: flex;
+               flex-direction: column;
+               justify-content: flex-start;
+               margin-bottom: 10px;
+               textarea {
+                  width: 620px;
+                  height: 100px;
+                  resize: none;
+                  font-size: 16px;
+                  padding: 20px;
+                  border-radius: 10px;
+                  border: 1px solid $gray;
+                  margin-bottom: 10px;
+               }
+               input {
+                  width: 640px;
+                  height: 40px;
+                  font-size: 16px;
+                  padding: 15px 0 0 20px;
+                  border-radius: 10px;
+                  border: 1px solid $gray;
+               }
+            }
+         }
+         img {
+            height: 150px;
+            width: fit-content;
+            margin: 0 0 10px 20px;
+         }
+         .delImage {
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+            background-color: white;
+            color: red;
+            border: 2px solid $main-color;
+            border-radius: 5px;
+         }
+
+      }
+      button {
+         width: 300px;
+         height: 60px;
+         border: 3px solid $main-color;
+         border-radius: 10px;
+         background-color: $main-color;
+         font-size: 16px;
+         font-weight: bold;
+         &:hover {
+            background-color: white;
+            transition: 0.35s;
+         }
+      }
+   }
+   table {
+      width: 1000px;
+      margin: 20px 0 50px;
+      thead {
+         height: 40px;
+         tr > th {
+            color: $dark-gray;
+            border-bottom: 3px solid $main-color;
+         }
+      }
+      tbody > tr > td {
+         color: $dark-gray;
+         vertical-align: middle;
+         height: 100px;
+         border-bottom: 2px solid $gray;
+         padding-right: 10px;
+         word-wrap: break-word;
+         &:nth-child(1) {
+            width: 110px;
+         }
+         &:nth-child(2) {
+            width: 160px;
+         }
+         &:nth-child(3) {
+            width: 210px;
+         }
+         &:nth-child(4) {
+            width: 245px;
+         }
+         &:nth-child(5) {
+            width: 105px;
+            img {
+               width: 90px;
+               height: auto;
+            }
+         }
+         &:nth-child(6) {
+            display: flex;
+            width: 110px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            button {
+               width: 110px;
+               height: 20px;
+               font-size: 16px;
+               font-weight: bold;
+               color: $main-color;
+               text-align: start;
+               text-shadow: 1px 1px $gray;
+               margin-bottom: 10px;
+               border: none;
+               background-color: white;
+               &:hover {
+                  cursor: pointer;
+                  text-decoration: underline;
+                  transition: 0.35s;
+               }
+            }
+         }
+      }
+   }
+}
+.down {
+   margin-top: 2px;
+}

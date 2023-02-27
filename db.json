@@ -1,0 +1,65 @@
+{
+  "discounts": [
+    {
+      "name": "Самовивіз",
+      "title": "Самовивіз",
+      "text": "Забирайте своє замовлення самостійно та отримуйте такі переваги.\n\nЗапечені моно макі з лососем у подарунок.\nВідсутність мінімальної суми замовлення.\nЧас очікування на замовлення до 30 хв.\nДля отримання акційного ролу у подарунок зберігається умова мінімальної суми замовлення 300 грн.\nЦя акція не поєднується з іншими акціями.",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fdiscounts%2Fimgonline-com-ua-compressed-pa0akdpwddstmsv1-scaled-697x379.jpg?alt=media&token=93b21670-1c88-4e6d-8c08-4c1812bb8f11",
+      "id": 1
+    },
+    {
+      "name": "Рол тижня",
+      "title": "50% знижки на \"Рол тижня\"",
+      "text": "\nЩотижня діє знижка 50% на один з ролів у нашому меню.\n“Рол тижня” ви можете знайти на головній сторінці нашого сайту.\nЗнижка діє при мінімальній сумі замовлення 300 грн.\nЦя акція не поєднується з іншими акціями.\n",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fdiscounts%2Fimgonline-com-ua-compressed-ryna9n84oqh1-scaled-697x379.jpg?alt=media&token=2a13a0f7-d661-430f-a990-8999dd4656b0",
+      "id": 2
+    },
+    {
+      "name": "3+1=5",
+      "title": "\"3+1=5\"",
+      "text": "Замовляйте 5 ролів, а платіть за 4.\nЗамовляйте 10 ролів, а платіть за 8 і так далі.\nБезкоштовним вважається рол з найменшою вартістю.\nЦя акція не поєднується з іншими акціями.",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fdiscounts%2Fimgonline-com-ua-compressed-ajbic74qfau00-scaled-697x379.jpg?alt=media&token=4206a02b-35f7-4dec-92a3-0dee72839268",
+      "id": 3
+    },
+    {
+      "name": "День народження з Моносуші",
+      "title": "День народження з Моносуші",
+      "text": "При оформленні замовлення вкажіть промокод “День народження” та отримайте “Запечений сет” безкоштовно до Вашого замовлення.\nТермін дії акції – День народження плюс один день до та після свята.\nЦя акція починає діяти при мінімальній сумі замовлення 750 грн.\nДля отримання подарунку іменинник має показати кур’єру оригінал документу, що підтверджує його дату народження.\nЦя акція не поєднується з іншими акціями.",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fdiscounts%2Fden-nar-scaled-697x379.jpg?alt=media&token=330d917c-321d-4772-9466-ab915e9a1e46",
+      "id": 4
+    },
+    {
+      "name": "Фотомарафон",
+      "title": "Фотомарафон",
+      "text": "Розіграш проводиться в соціальній мережі – Instagram.\nЩоб стати учасником розіграшу варто зробити будь-який контент на задану тему з нашими ролами. Це може бути фото, відео, tik-tok.\nОбов’язково позначай нас на пості або сторі, щоб стати учасником марафону. ( інакше ми вас не побачимо )\nМарафон діє на постійній основі.\nПереможці визначаються два рази на місяць.\nПерше місце-Запечений сирний з лососем.\nДруге місце-Філадельфія з лососем.\nТретє місце-Запечені моно макі з креветкою.\nДеталі актуального марафону уточнюйте в нашому Instagram: @monosushi.com.ua",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fdiscounts%2Fimgonline-com-ua-compressed-tn6e51pounmi-scaled-697x379.jpg?alt=media&token=2262233f-618c-4bbb-888b-a4da027fb45e",
+      "id": 5
+    }
+  ],
+  "categories": [
+    {
+      "name": "Роли",
+      "path": "rols",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-rolls.svg?alt=media&token=025fd620-ebb1-4094-b033-3fab8e85023d",
+      "id": 1
+    },
+    {
+      "name": "Сети",
+      "path": "sets",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-sets.svg?alt=media&token=b899529e-6edf-46ab-a313-615033f72222",
+      "id": 2
+    },
+    {
+      "name": "Напої",
+      "path": "drinks",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-drinks.svg?alt=media&token=08d407bc-f8c1-4244-850d-1bcf1b969ff5",
+      "id": 3
+    },
+    {
+      "name": "Соуси",
+      "path": "sauses",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Ficon.svg?alt=media&token=2dd41a9b-e7c6-4220-b229-ab06c6c64d44",
+      "id": 4
+    }
+  ]
+}
