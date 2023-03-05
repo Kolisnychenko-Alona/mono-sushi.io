@@ -10,7 +10,7 @@
                   <p>Акції</p>
                </div>
             </li>
-            <li *ngFor="let category of userCategories" [routerLink]="[ '/product/category.path']" class="header-nav-menu-item">
+            <li *ngFor="let category of userCategories" [routerLink]="[ '/product',category.path ]" class="header-nav-menu-item">
                <div>
                   <img [src]="category.imagePath">
                   <p>{{category.name}}</p>
@@ -24,7 +24,7 @@
          <span [class.disappear]="isBurger" [class.appear]="!isBurger"></span>
          <span [class.rotate2]="isBurger" [class.rotate2Off]="!isBurger"></span>
       </div>
-      <div class="header-burger-list" [class.burgerOn]="isBurger" [class.burgerOff]="!isBurger" *ngIf="isBurger">
+      <div class="header-burger-list" [class.burgerOn]="isBurger" [class.burgerOff]="!isBurger">
          <ul>
             <li [routerLink]="[ '/deliveryAndPayment']">Доставка та оплата</li>
             <li [routerLink]="[ '/about']" >Про нас</li>

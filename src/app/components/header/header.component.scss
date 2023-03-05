@@ -94,8 +94,10 @@
       align-items: center;
       background-color: $main-color;
       padding: 0 22px;
+      transition: 0.35s;
       &:hover{
          cursor: pointer;
+         transition: 0.35s;
       }
    }
 
@@ -120,9 +122,11 @@
             text-transform: capitalize;
             text-align: center;
             position: relative; 
+            transition: 0.35s;
             &:hover{
                border-color: $main-color;
                cursor: pointer;
+               transition: 0.35s;
             }
             div{
                position: absolute;
@@ -170,6 +174,7 @@
             height: 3px;
             border-radius: 10px;
             background-color: #252525;
+            transition: 0.35s;
             &:nth-child(1), &:nth-child(2){
                margin-bottom: 5px;
             }
@@ -177,6 +182,7 @@
          &:hover{
             border-color:$main-color;
             cursor: pointer;
+            transition: 0.35s;
          }
       }
       &-list{
@@ -201,9 +207,11 @@
             margin-bottom: 10px;
             padding-left: 10px;
             line-height: 40px;
+            transition: 0.35s;
             &:hover{
                border-color: $main-color;
                cursor: pointer;
+               transition: 0.35s;
             }
          }
       }
@@ -222,6 +230,7 @@
          display: flex;
          align-items: center;
          justify-content: center;
+         transition: 0.35s;
          span{
             font-size: 14px;
             font-weight: bold;
@@ -233,6 +242,7 @@
             background-color: white;
             border-color: $main-color;
             cursor: pointer;
+            transition: 0.35s;
          }
       }
    }
@@ -259,6 +269,7 @@
          display: flex;
          align-items: center;
          justify-content: center;
+         transition: 0.35s;
          img{
             // display: block;
             width: 25px;
@@ -267,6 +278,7 @@
          &:hover{
             border-color: $main-color;
             cursor: pointer;
+            transition: 0.35s;
          }
       }
       
@@ -278,8 +290,10 @@
       justify-content: center;
       align-items: center;
       background-color: $main-color;
+      transition: 0.35s;
       &:hover{
          cursor: pointer;
+         transition: 0.35s;
       }
       i{
          position: relative;
@@ -316,7 +330,6 @@
 
 .burgerOn{
    animation: burgerOn 0.5s forwards;
-
 }
 .rotate1{
    animation: rotate1 0.5s forwards;
@@ -332,6 +345,7 @@
 }
 .burgerOff{
    animation: burgerOff 0.5s forwards;
+   display: none;
 }
 .rotate1Off{
    animation: rotate1Off 0.5s forwards;

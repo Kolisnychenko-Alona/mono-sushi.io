@@ -46,7 +46,7 @@
             <td><img [src]="category.imagePath"></td>
             <td>
                <button (click)="editCategory(category)">Редагувати</button>
-               <button (click)="deleteCategory(category)">Видалити</button>
+               <button (click)="deleteCategory(category)" [disabled]="editStatus">Видалити</button>
             </td>
          </tr>
       </tbody>

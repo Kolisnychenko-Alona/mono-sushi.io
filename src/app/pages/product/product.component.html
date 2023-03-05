@@ -1,3 +1,37 @@
 <div class="container">
    <h1>Продукти</h1>
+   <div class="selection">
+      <div class="selection-item" [routerLink]="[ 'rolls' ]" routerLinkActive="active">Всі</div>
+      <div class="selection-item">Філадельфія</div>
+      <div class="selection-item">Каліфорнія</div>
+      <div class="selection-item">Запечені</div>
+      <div class="selection-item">Фірмові</div>
+      <div class="selection-item">Макі</div>
+      <div class="selection-item">Преміум</div>
+   </div>
+   <div class="products">
+      <div class="products-one" *ngFor="let product of userProducts">
+         <div class="products-one-image">
+            <img [src]="product.imagePath" alt="">
+         </div>
+         <div class="products-one-information">
+            <h3>{{product.name}}</h3>
+            <div class="products-one-information-about">
+               <p>{{product.description}}</p>
+               <p><b>{{product.weight}}г</b></p>
+            </div>
+         </div>
+         <div class="products-one-order">
+            <div><b>{{ product.price }}</b>грн</div>
+            <div class="products-one-order-count">
+               <button>-</button>
+               <p><b>1</b></p>
+               <button>+</button>
+            </div>
+            <div class="products-one-order-button">
+               <button type="button">Замовити</button>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>

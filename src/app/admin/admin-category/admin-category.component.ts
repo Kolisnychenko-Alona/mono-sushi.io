@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { deleteObject, getDownloadURL, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
+import { ImageService } from 'src/app/shared/services/image/image.service';
 
 @Component({
   selector: 'app-admin-category',
@@ -21,8 +21,8 @@ export class AdminCategoryComponent implements OnInit {
 
   constructor(
     private categoryService: CategoryService,
+    private imageService: ImageService,
     private fb: FormBuilder,
-    private storage: Storage
   ) {}
 
   ngOnInit(): void {
@@ -93,7 +93,8 @@ export class AdminCategoryComponent implements OnInit {
 
   upload(event: any): void {
     const file = event.target.files[0];
-    this.uploadFile('images/categories', file.name, file)
+    this.imageService
+      .uploadFile('images/categories', file.name, file)
       .then((data) => {
         this.isUploaded = true;
         this.categoryForm.patchValue({
@@ -105,45 +106,24 @@ export class AdminCategoryComponent implements OnInit {
       });
   }
 
-  async uploadFile(
-    folder: string,
-    name: string,
-    file: File | null
-  ): Promise<string> {
-    const path = `${folder}/${name}`;
-    let url = '';
-    if (file) {
-      try {
-        const storageRef = ref(this.storage, path);
-        const task = uploadBytesResumable(storageRef, file);
-
-        await task;
-        url = await getDownloadURL(storageRef);
-      } catch (e: any) {
-        console.error(e);
-      }
-    } else {
-      console.log('Wrong format');
-    }
-    return Promise.resolve(url);
-  }
-
   deleteImage(): void {
-    const task = ref(this.storage, this.valueByControl('imagePath'));
-    deleteObject(task).then(() => {
-      console.log('File deleted');
-      this.isUploaded = false;
-      this.categoryForm.patchValue({
-        imagePath: null,
+    this.imageService
+      .deleteUploadFile(this.valueByControl('imagePath'))
+      .then(() => {
+        console.log('File deleted');
+        this.isUploaded = false;
+        this.categoryForm.patchValue({ imagePath: null });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }
 
   valueByControl(control: string): string {
     return this.categoryForm.get(control)?.value;
   }
 
-  isControlInvalid(controlName: string): boolean{
+  isControlInvalid(controlName: string): boolean {
     const control = this.categoryForm.controls[controlName];
     const result = control.invalid && control.touched;
     return result;

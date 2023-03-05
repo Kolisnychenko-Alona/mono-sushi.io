@@ -1,6 +1,20 @@
 <div class="container">
-   <div class="banner">
-      
+   <div class="slider"> 
+      <div class="slider-container" [style.transform]="'translateX(' + slide + 'px)'">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/12/5-tyj-v-podarunok-.jpg" alt="">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/12/rol-tyzhnya.jpg" alt="">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/12/den-narodzhennya-.jpg" alt="">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/12/monokombo.jpg" alt="">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/12/samovyviz.jpg" alt="">
+         <img src="https://monosushi.com.ua/wp-content/uploads/2022/12/fotomarafon-.jpg" alt="">
+      </div>
+      <div class="slider-items">
+         <div class="slider-items-one" [class.active]="count == 1"></div>
+         <div class="slider-items-one" [class.active]="count == 2"></div>
+         <div class="slider-items-one" [class.active]="count == 3"></div>
+         <div class="slider-items-one" [class.active]="count == 4"></div>
+         <div class="slider-items-one" [class.active]="count == 5"></div>
+      </div>
    </div>
    <div class="information">
       <div class="information-box">
@@ -16,6 +30,40 @@
       <div class="information-box">
          <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/mono-bonus.svg" alt="">
          <div class="information-box-text" >Наш графік роботи Працюємо з <b>11:00</b> до <b>22:30</b></div>
+      </div>
+   </div>
+   <div class="selection">
+      <div class="selection-item" [routerLink]="[ 'rolls' ]" routerLinkActive="active">Всі</div>
+      <div class="selection-item" >Філадельфія</div>
+      <div class="selection-item" >Каліфорнія</div>
+      <div class="selection-item" >Запечені</div>
+      <div class="selection-item" >Фірмові</div>
+      <div class="selection-item" >Макі</div>
+      <div class="selection-item" >Преміум</div>
+   </div>
+   <div class="products">
+      <div class="products-one" *ngFor="let product of userProducts">
+         <div class="products-one-image">
+            <img [src]="product.imagePath" alt="">
+         </div>
+         <div class="products-one-information">
+            <h3>{{product.name}}</h3>
+            <div class="products-one-information-about">
+               <p>{{product.description}}</p>
+               <p><b>{{product.weight}}г</b></p>
+            </div>
+         </div>
+         <div class="products-one-order">
+            <div><b>{{ product.price }}</b>грн</div>
+            <div class="products-one-order-count">
+               <button>-</button>
+               <p><b>1</b></p>
+               <button>+</button>
+            </div>
+            <div class="products-one-order-button">
+               <button type="button">Замовити</button>
+            </div>
+         </div>
       </div>
    </div>
 </div>

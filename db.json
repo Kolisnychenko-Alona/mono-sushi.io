@@ -39,8 +39,8 @@
   "categories": [
     {
       "name": "Роли",
-      "path": "rols",
-      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-rolls.svg?alt=media&token=025fd620-ebb1-4094-b033-3fab8e85023d",
+      "path": "rolls",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-rolls.svg?alt=media&token=509624ec-edb3-4023-a6c8-219806a21e69",
       "id": 1
     },
     {
@@ -60,6 +60,30 @@
       "path": "sauses",
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Ficon.svg?alt=media&token=2dd41a9b-e7c6-4220-b229-ab06c6c64d44",
       "id": 4
+    }
+  ],
+  "products": [
+    {
+      "category": "Роли",
+      "name": "Філадельфія з лососем",
+      "path": "filadelfiya-z-lososem",
+      "description": "Риc, крем сир, огірок, лосось",
+      "weight": " 280",
+      "price": "247",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fproducts%2F1.-filadelfiya-z-lososem.jpg.pagespeed.ce.axvTz8qDqj.jpg?alt=media&token=9a8e0567-95f9-47e9-a6b7-71296ede23f6",
+      "count": 1,
+      "id": 1
+    },
+    {
+      "category": "Сети",
+      "name": "Запечений сет",
+      "path": "zapechenyj-set-2",
+      "description": "Запечений сирний з креветкою Запечений моно з лососем",
+      "weight": "680",
+      "price": "540",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fproducts%2Fimgonline-com-ua-compressed-wnclohqe80-scaled.jpg.pagespeed.ce.DxC77gzUKm.jpg?alt=media&token=5de86360-2b34-4966-9100-cd9a852ea9df",
+      "count": null,
+      "id": 2
     }
   ]
 }

@@ -17,15 +17,15 @@ import { AdminDiscountComponent } from './admin/admin-discount/admin-discount.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 
 const routes: Routes = [
-  { path: '' || 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'discount', component: DiscountComponent },
   { path: 'discount/:id', component: DiscountInfoComponent },
   { path: 'product/:category', component: ProductComponent },
   { path: 'deliveryAndPayment', component: DeliveryAndPaymentComponent },
   { path: 'about', component: AboutComponent },
   { path: 'checkout', component: CheckoutComponent },
-  {
-    path: 'admin',
+  { path: 'admin',
     component: AdminComponent,
     children: [
       { path: 'category', component: AdminCategoryComponent },

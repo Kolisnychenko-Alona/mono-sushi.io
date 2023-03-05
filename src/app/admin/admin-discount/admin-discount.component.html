@@ -7,11 +7,15 @@
          <div class="adding-input-fields">
             <div class="adding-input-fields-top">
                <input type="text" name="name" formControlName="name" placeholder="*Назва">
+               <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
                <input type="text" name="title" formControlName="title" placeholder="*Заголовок">
+               <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
             </div>
             <div class="adding-input-fields-bottom">
                <textarea name="text" formControlName="text" placeholder="*Опис"></textarea>
+               <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
                <input type="file" formControlName="imagePath" (change)="upload($event)">
+               <div class="err" *ngIf="isControlInvalid('name')">Поле не може бути порожнім</div>
             </div>
          </div>
          <ng-container *ngIf="isUploaded">
@@ -39,7 +43,8 @@
             <td>{{discount.title}}</td>
             <td>{{discount.text | slice:0:50}} <span *ngIf="discount.text.length > 51">...</span></td>
             <td><img [src]="discount.imagePath"></td>
-            <td><button (click)="editDiscount(discount)">Редагувати</button><button (click)="deleteDiscount(discount)">Видалити</button></td>
+            <td><button (click)="editDiscount(discount)">Редагувати</button>
+               <button (click)="deleteDiscount(discount)" [disabled]="editStatus">Видалити</button></td>
          </tr>
       </tbody>
    </table>
