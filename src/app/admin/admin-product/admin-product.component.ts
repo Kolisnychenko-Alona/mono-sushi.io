@@ -29,7 +29,7 @@ export class AdminProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCategories(), this.getProducts(), this.initProductForm();
+    this.initProductForm(), this.getCategories(), this.getProducts();
   }
   down(): void {
     this.isDown = true;
@@ -108,14 +108,11 @@ export class AdminProductComponent implements OnInit {
     this.imageService.uploadFile('images/products', file.name, file)
       .then((data) => {
         this.isUploaded = true;
-        // console.log(data); //приходить вірний шлях з firebase
         this.productForm.patchValue({ imagePath: data });
-        // console.log(this.productForm.get('imagePath')?.value); //не встановлюється цей шлях в поле форми
       })
       .catch((err) => {
         console.log(err);
       });
-      console.log(this.productForm.get('imagePath')?.value);
   }
 
   deleteImage(): void {

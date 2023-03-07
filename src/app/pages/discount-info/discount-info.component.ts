@@ -14,29 +14,14 @@ export class DiscountInfoComponent implements OnInit {
   public separatedText!: Array<string>;
 
   constructor(
-    private discountService: DiscountService, 
     private activatedRout: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getOneDiscount();
-  }
-
-  getOneDiscount(): void{
-    const DISCOUNT_ID = Number(this.activatedRout.snapshot.paramMap.get('id'));
-    this.discountService.getOne(DISCOUNT_ID).subscribe(data => {
-      this.discount = data;
-      this.separatedText = data.text.split('.');
+    this.activatedRout.data.subscribe(response => {
+      this.discount = response['discountInfo'];
+      this.separatedText = response['discountInfo'].text.split('.');
       this.separatedText.pop();
-      console.log(this.separatedText);
-    });
-
+    })
   }
-  
-  // separate(): void{
-  //   const text = this.discount.text;
-  //   console.log(text)
-  //   // this.separatedText = text.split('. ');
-  // }
-
 }

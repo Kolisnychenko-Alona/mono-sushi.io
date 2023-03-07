@@ -7,7 +7,7 @@
       <div class="adding-input">
          <div class="adding-input-fields">
             <select formControlName="category" name="category" id="">
-               <option [ngValue]="category.name" *ngFor="let category of adminCategories">{{category.name}}</option>
+               <option [ngValue]="category" *ngFor="let category of adminCategories">{{category.name}}</option>
             </select>
             <div class="adding-input-fields-doble">
                <div class="adding-input-fields-doble-inputBox">
@@ -61,7 +61,7 @@
       <tbody>
          <tr *ngFor="let product of adminProducts">
             <td>{{product.id}}</td>
-            <td>{{product.category}}</td>
+            <td>{{product.category.name}}</td>
             <td>{{product.name}}</td>
             <td>{{product.description | slice:0:30}}
                <span *ngIf="product.description.length>30">...</span>

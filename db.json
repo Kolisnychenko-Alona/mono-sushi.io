@@ -64,7 +64,12 @@
   ],
   "products": [
     {
-      "category": "Роли",
+      "category": {
+        "name": "Роли",
+        "path": "rolls",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-rolls.svg?alt=media&token=509624ec-edb3-4023-a6c8-219806a21e69",
+        "id": 1
+      },
       "name": "Філадельфія з лососем",
       "path": "filadelfiya-z-lososem",
       "description": "Риc, крем сир, огірок, лосось",
@@ -75,15 +80,52 @@
       "id": 1
     },
     {
-      "category": "Сети",
+      "category": {
+        "name": "Сети",
+        "path": "sets",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-sets.svg?alt=media&token=b899529e-6edf-46ab-a313-615033f72222",
+        "id": 2
+      },
       "name": "Запечений сет",
       "path": "zapechenyj-set-2",
       "description": "Запечений сирний з креветкою Запечений моно з лососем",
       "weight": "680",
       "price": "540",
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fproducts%2Fimgonline-com-ua-compressed-wnclohqe80-scaled.jpg.pagespeed.ce.DxC77gzUKm.jpg?alt=media&token=5de86360-2b34-4966-9100-cd9a852ea9df",
-      "count": null,
+      "count": 1,
       "id": 2
+    },
+    {
+      "category": {
+        "name": "Напої",
+        "path": "drinks",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Fnav-img-drinks.svg?alt=media&token=08d407bc-f8c1-4244-850d-1bcf1b969ff5",
+        "id": 3
+      },
+      "name": "Fanta апельсин",
+      "path": "fanta-apelsyn",
+      "description": "Fanta апельсин",
+      "weight": "0.33",
+      "price": "31",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fproducts%2Ffanta-033.jpg?alt=media&token=45c9b6a7-0432-4095-875a-5b43c7c8f5b5",
+      "count": 1,
+      "id": 3
+    },
+    {
+      "category": {
+        "name": "Соуси",
+        "path": "sauses",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fcategories%2Ficon.svg?alt=media&token=2dd41a9b-e7c6-4220-b229-ab06c6c64d44",
+        "id": 4
+      },
+      "name": "Соєвий соус",
+      "path": "soievyi",
+      "description": "Соєвий соус",
+      "weight": "150",
+      "price": "24",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/mono-sushi-d1705.appspot.com/o/images%2Fproducts%2F22334.jpg?alt=media&token=229356dc-4569-480d-acdf-172427692f89",
+      "count": 1,
+      "id": 4
     }
   ]
 }

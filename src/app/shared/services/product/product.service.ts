@@ -18,7 +18,7 @@ export class ProductService {
   }
 
   getAllByCategory(name: string): Observable<IProductResponse[]> {
-    return this.http.get<IProductResponse[]>(`${this.api.products}?category.patch=${name}`);
+    return this.http.get<IProductResponse[]>(`${this.api.products}?category.path=${name}`);
   }
 
   getOne(id: number): Observable<IProductResponse> {
@@ -26,7 +26,6 @@ export class ProductService {
   }
 
   create(product: IProductRequest): Observable<IProductResponse> {
-    // console.log('dfvnjdfvfd', product);
     return this.http.post<IProductResponse>(this.api.products, product);
   }
   update(product: IProductRequest, id: number): Observable<IProductResponse> {

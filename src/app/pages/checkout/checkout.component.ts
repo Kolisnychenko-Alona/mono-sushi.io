@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IProductResponse } from 'src/app/shared/interfaces/product/product.interface';
+import { OrderService } from 'src/app/shared/services/order/order.service';
+import { ProductService } from 'src/app/shared/services/product/product.service';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor( private productService: ProductService, private orderService: OrderService ) { }
 
   ngOnInit(): void {
+  }
+
+  productCount(product: IProductResponse, value: boolean):void{
+
   }
 
 }

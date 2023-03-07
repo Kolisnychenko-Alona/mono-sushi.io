@@ -38,15 +38,15 @@
       }
    }
    .products{
-      width: 1200px;
-      margin-bottom: 50px;
+      width: 1290px;
+      margin: 0 auto 50px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       flex-wrap: wrap;
       &-one{
          width: 280px;
-         height: 320px;
+         height: 400px;
          margin: 10px;
          padding: 10px;
          border: 1px solid transparent;
@@ -58,7 +58,7 @@
          }
          &-image{
             width: 280px;
-            height: 200px;
+            height: 280px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -114,15 +114,14 @@
                display: flex;
                justify-content: space-between;
                align-items: center;
-               p{
-                  cursor: text;
-               }
                button{
                   width: 16px;
                   height: 25px;
                   border: 1px solid transparent;
                   border-radius: 5px;
                   background-color: transparent;
+                  font-size: 18px;
+                  color: $dark-gray;
                   display: flex;
                   justify-content: center;
                   align-items: center;
@@ -131,6 +130,13 @@
                      background-color: $main-color;
                      transition: 0.35s;
                   }
+               }
+               input{
+                  width: 20px;
+                  text-align: center;
+                  border: none;
+                  font-weight: bold;
+                  font-size: 16px;
                }
             }
             &-button{

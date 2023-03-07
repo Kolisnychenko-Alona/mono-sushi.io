@@ -33,7 +33,7 @@
       </div>
    </div>
    <div class="selection">
-      <div class="selection-item" [routerLink]="[ 'rolls' ]" routerLinkActive="active">Всі</div>
+      <div class="selection-item" >Всі</div>
       <div class="selection-item" >Філадельфія</div>
       <div class="selection-item" >Каліфорнія</div>
       <div class="selection-item" >Запечені</div>
@@ -44,24 +44,24 @@
    <div class="products">
       <div class="products-one" *ngFor="let product of userProducts">
          <div class="products-one-image">
-            <img [src]="product.imagePath" alt="">
+            <img [routerLink]="[ '/product/'+product.category.path, product.id ]" [src]="product.imagePath" [alt]="product.name">
          </div>
          <div class="products-one-information">
-            <h3>{{product.name}}</h3>
+            <h3 [routerLink]="[ '/product/'+product.category.path, product.id ]">{{product.name}}</h3>
             <div class="products-one-information-about">
                <p>{{product.description}}</p>
-               <p><b>{{product.weight}}г</b></p>
+               <p><b>{{product.weight}} г</b></p>
             </div>
          </div>
          <div class="products-one-order">
-            <div><b>{{ product.price }}</b>грн</div>
+            <div><b>{{ product.price * product.count }}</b> грн</div>
             <div class="products-one-order-count">
-               <button>-</button>
-               <p><b>1</b></p>
-               <button>+</button>
+               <button (click)="productCount(product, false)">-</button>
+               <input type="text" [value]="product.count">
+               <button (click)="productCount(product, true)">+</button>
             </div>
             <div class="products-one-order-button">
-               <button type="button">Замовити</button>
+               <button type="button" (click)="addToBasket(product)">Замовити</button>
             </div>
          </div>
       </div>
