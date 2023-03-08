@@ -17,27 +17,46 @@ import { AdminDiscountComponent } from './admin/admin-discount/admin-discount.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { ProductInfoResolver } from './shared/services/product/product-info.resolver';
 import { DiscountInfoResolver } from './shared/services/discount/discount-info.resolver';
+import { AuthGuard } from './shared/guards/auth/auth.guard';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { AdminGuard } from './shared/guards/auth/admin.guard';
+import { UserInformationComponent } from './pages/cabinet/user-information/user-information.component';
+import { OrderHistoryComponent } from './pages/cabinet/order-history/order-history.component';
+import { ChangePasswordComponent } from './pages/cabinet/change-password/change-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'discount', component: DiscountComponent },
-  { path: 'discount/:id', component: DiscountInfoComponent, 
-    resolve: {
-      discountInfo: DiscountInfoResolver
-  } },
+  {
+    path: 'discount/:id',
+    component: DiscountInfoComponent,
+    resolve: { discountInfo: DiscountInfoResolver },
+  },
   { path: 'product/:category', component: ProductComponent },
-  { path: 'product/:category/:id', component: ProductInfoComponent, 
-      resolve: {
-      productInfo: ProductInfoResolver,
-    },
+  {
+    path: 'product/:category/:id',
+    component: ProductInfoComponent,
+    resolve: { productInfo: ProductInfoResolver },
   },
   { path: 'deliveryAndPayment', component: DeliveryAndPaymentComponent },
   { path: 'about', component: AboutComponent },
   { path: 'checkout', component: CheckoutComponent },
   {
+    path: 'cabinet',
+    component: CabinetComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'userInfo', component: UserInformationComponent },
+      { path: 'orderHistory', component: OrderHistoryComponent },
+      { path: 'changePassword', component: ChangePasswordComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'userInfo' },
+    ],
+  },
+  {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AdminGuard],
     children: [
       { path: 'category', component: AdminCategoryComponent },
       { path: 'product', component: AdminProductComponent },
@@ -48,9 +67,8 @@ const routes: Routes = [
   },
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

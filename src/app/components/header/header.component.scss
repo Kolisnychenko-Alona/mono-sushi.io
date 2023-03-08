@@ -1,84 +1,6 @@
 @import '../../shared/style/variables';
 
 
-@keyframes burgerOn{
-   0%{
-      opacity: 0;
-      height: 0px;
-   }
-   100%{
-      opacity: 1;
-      height: 180px;
-   }
-}
-@keyframes rotate1{
-   0%{
-      transform: rotate(0deg);
-      transform-origin: top left;
-   }
-   100%{
-      transform: rotate(45deg);
-      transform-origin: top left;
-
-   }
-}
-@keyframes rotate2{
-   0%{
-      transform: rotate(0deg);
-      transform-origin: bottom left;
-   }
-   100%{
-      transform: rotate(-45deg);
-      transform-origin: bottom left;
-
-   }
-}
-@keyframes disappear{
-   0%{
-      opacity: 1;
-   }
-   100%{
-      opacity: 0;
-   }
-}
-@keyframes burgerOff{
-   0%{
-      opacity: 1;
-      height: 180px;
-   }
-   100%{
-      opacity: 0;
-      height: 0px;
-   }
-}
-@keyframes rotate1Off{
-   0%{
-      transform: rotate(45deg);
-      transform-origin: top left;
-   }
-   100%{
-      transform: rotate(0deg);
-      transform-origin: top left;
-   }
-}
-@keyframes rotate2Off{
-   0%{
-      transform: rotate(-45deg);
-      transform-origin: bottom left;
-   }
-   100%{
-      transform: rotate(0deg);
-      transform-origin: bottom left;
-   }
-}
-@keyframes appear{
-   0%{
-      opacity: 0;
-   }
-   100%{
-      opacity: 1;
-   }
-}
 
 .header{
    width: 100%;
@@ -164,6 +86,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      transition: 0.35s;
       &-button{
          width: 50px;
          height: 50px;
@@ -181,9 +104,34 @@
             border-radius: 10px;
             background-color: #252525;
             transition: 0.35s;
-            &:nth-child(1), &:nth-child(2){
+            &:nth-child(1){
                margin-bottom: 5px;
+               transform: rotate(0deg);
+               transform-origin: top left;      
+               &.on{
+                  transform: rotate(45deg);
+                  transform-origin: top left;
+                  transition: 0.35s;
+               }
             }
+            &:nth-child(2){
+               margin-bottom: 5px;
+               opacity: 1;
+               transition: 0.35s;
+               &.on{
+                  opacity: 0;
+                  transition: 0.35s;
+               }
+            }
+            &:nth-child(3){
+               transform: rotate(0deg);
+               transform-origin: bottom left;
+               &.on{
+                  transform: rotate(-45deg);
+                  transform-origin: bottom left;
+                  transition: 0.35s;
+               }
+            }  
          }
          &:hover{
             border-color:$main-color;
@@ -196,6 +144,7 @@
          top: 0;
          left: -20px;
          width: 200px;
+         height: 0;
          border: 2px solid $main-color;
          border-radius: 10px;
          background-color: rgba(255, 255, 255);
@@ -203,6 +152,12 @@
          z-index: 4;
          padding: 80px 0 0 30px;
          overflow: hidden;
+         transition: 0.35s;
+         &.on{
+            opacity: 1;
+            height: 180px;
+            transition: 0.35s;
+         }
          li{
             width: 160px;
             height: 40px;
@@ -229,7 +184,7 @@
       justify-content: center;
       button{
          height: 40px;
-         width: 200px;
+         width: 40px;
          background-color: $main-color;
          border-radius: 10px;
          border: 2px solid transparent;
@@ -237,13 +192,6 @@
          align-items: center;
          justify-content: center;
          transition: 0.35s;
-         span{
-            font-size: 14px;
-            font-weight: bold;
-            margin-left: 5px;
-            line-height: 40px;
-            text-transform: uppercase;
-         }
          &:hover{
             background-color: white;
             border-color: $main-color;
@@ -263,31 +211,75 @@
       }
    }
    &-user{
+      width: 50px;
       height: 100%;
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      div{
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+      &-image{
          width: 50px;
          height: 50px;
          border: 2px solid transparent;
          border-radius: 10px;
          display: flex;
          align-items: center;
+         z-index: 10;
          justify-content: center;
          transition: 0.35s;
-         img{
-            // display: block;
-            width: 25px;
-            height: 25px;
-         }
          &:hover{
             border-color: $main-color;
             cursor: pointer;
             transition: 0.35s;
          }
+         img{
+            z-index: 10;
+            width: 25px;
+            height: 25px;
+         }
       }
-      
+      &-list{
+         position: absolute;
+         display: none;
+         top: 0;
+         left: -30px;
+         width: 180px;
+         height: 0;
+         border: 2px solid $main-color;
+         border-radius: 10px;
+         background-color: white;
+         opacity: 0;
+         z-index: 8;
+         padding: 80px 0 0 30px;
+         overflow: hidden;
+         transition: 0.35s;
+         &.on{
+            display: block;
+            opacity: 100;
+            height: 230px;
+            transition: 0.35s;
+         }
+         ul>li{
+            width: 160px;
+            height: 40px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            line-height: 40px;
+            transition: 0.35s;
+            &:hover{
+               border-color: $main-color;
+                cursor: pointer;
+               transition: 0.35s;
+            }
+         }
+      }      
    }
    &-basket{
       height: 100%;
@@ -325,42 +317,6 @@
          }
       }
    }
-}
-
-.fixed{
-   position: fixed;
-   top: 0;
-   left: 0;
-   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 5%);
-}
-
-.burgerOn{
-   animation: burgerOn 0.5s forwards;
-}
-.rotate1{
-   animation: rotate1 0.5s forwards;
-}
-.rotate2{
-   animation: rotate2 0.5s forwards;
-}
-.disappear{
-   animation: disappear 0.5s forwards;
-}
-.hoverOff:hover{
-   border-color: white;
-}
-.burgerOff{
-   animation: burgerOff 0.5s forwards;
-   display: none;
-}
-.rotate1Off{
-   animation: rotate1Off 0.5s forwards;
-}
-.rotate2Off{
-   animation: rotate2Off 0.5s forwards;
-}
-.disappearOff{
-   animation: appear 0.5s forwards;
 }
 
 .basket-container{
@@ -474,4 +430,89 @@
          }
       }
    }
+}
+.login-container{
+   width: 100%;
+   height: 100%;
+   background-color: rgba(83, 83, 83, 0.616);
+   position: fixed;
+   top: 0;
+   right: 0;
+   z-index: 10;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   &-box{
+      width: 500px;
+      height: 350px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p{
+         width: 100%;
+         height: 10px;
+         font-size: 16px;
+         font-weight: bold;
+         text-align: right;
+         color: $dark-gray;
+         cursor: pointer;
+      }
+      h2{
+         width: 400px;
+         height: 30px;
+         margin: 30px 0 20px;
+         font-size: 22px;
+         font-weight: bold;
+         text-align: center;
+      }
+      form{
+         width: 440px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         input{
+            width: 400px;
+            height: 30px;
+            border: 1px solid $gray;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 5px 0;
+            // box-shadow: 0 0 1px 1px rgb(218, 216, 216);
+         }
+         button{
+            width: 440px;
+            height: 50px;
+            margin-top: 10px;
+            background-color: $main-color;
+            border: 1px solid $main-color;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            &:hover{
+               cursor: pointer;
+               background-color: white;
+            }
+         }
+      }
+      div{
+         width: 440px;
+         height: 20px;
+         margin-top: 10px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         p{
+            width: 110px;
+            font-size: 12px;
+            text-align: start;
+            color: black;
+            font-weight: bold;
+         }
+      }
+   }
+    
 }

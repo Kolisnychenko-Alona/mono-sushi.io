@@ -1,0 +1,33 @@
+@import "../../shared/style/variables";
+
+.container{
+   width: 900px;
+   margin: 20px auto;
+   padding: 0 10px;
+   display: flex;
+   justify-content: space-between;
+   .navbar{
+      width: 150px;
+      height: 180px;
+      margin-bottom: 10px;
+      &-categories{
+         width: 150;
+         height: 60px;
+         border: 1px solid $gray;
+         border-left: none;
+         text-align: center;
+         line-height: 60px;
+         font-size: 14px;
+         color: $dark-gray;
+         &.active{
+            color: black;
+            font-weight: bold;
+            border-top: 2px solid $main-color;
+            border-right: none;
+         }
+      }
+   }
+   .content{
+      width: 730px;
+   }
+}

@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -30,6 +28,11 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { UserInformationComponent } from './pages/cabinet/user-information/user-information.component';
+import { OrderHistoryComponent } from './pages/cabinet/order-history/order-history.component';
+import { ChangePasswordComponent } from './pages/cabinet/change-password/change-password.component';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +52,11 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     AdminCategoryComponent,
     AdminProductComponent,
     AdminDiscountComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    CabinetComponent,
+    UserInformationComponent,
+    OrderHistoryComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +65,9 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     ReactiveFormsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(()=> getStorage())
+    provideStorage(() => getStorage()),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

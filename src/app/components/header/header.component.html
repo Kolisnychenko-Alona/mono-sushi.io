@@ -3,50 +3,87 @@
       <img src="https://monosushi.com.ua/wp-content/uploads/2021/06/logo.svg" alt="monosushi">
    </div>
    <div class="header-nav">
-         <ul class="header-nav-menu">
-            <li  [routerLink]="[ '/discount' ]"  class="header-nav-menu-item" >
-               <div>
-                  <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/nav-img-gift.svg">
-                  <p>Акції</p>
-               </div>
-            </li>
-            <li *ngFor="let category of userCategories" [routerLink]="[ '/product',category.path ]" class="header-nav-menu-item">
-               <div>
-                  <img [src]="category.imagePath">
-                  <p>{{category.name}}</p>
-               </div>
-            </li>
-         </ul>
+      <ul class="header-nav-menu">
+         <li [routerLink]="[ '/discount' ]" class="header-nav-menu-item">
+            <div>
+               <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/nav-img-gift.svg">
+               <p>Акції</p>
+            </div>
+         </li>
+         <li *ngFor="let category of userCategories" [routerLink]="[ '/product',category.path ]"
+            class="header-nav-menu-item">
+            <div>
+               <img [src]="category.imagePath">
+               <p>{{category.name}}</p>
+            </div>
+         </li>
+      </ul>
    </div>
-   <div class="header-burger"  >
-      <div class="header-burger-button" [class.hoverOff]="isBurger" (click)="burger()">
-         <span [class.rotate1]="isBurger" [class.rotate1Off]="!isBurger"></span>
-         <span [class.disappear]="isBurger" [class.appear]="!isBurger"></span>
-         <span [class.rotate2]="isBurger" [class.rotate2Off]="!isBurger"></span>
+   <div class="header-burger">
+      <div class="header-burger-button" (click)="isBurger = !isBurger">
+         <span [class.on]="isBurger"></span>
+         <span [class.on]="isBurger"></span>
+         <span [class.on]="isBurger"></span>
       </div>
-      <div class="header-burger-list" [class.burgerOn]="isBurger" [class.burgerOff]="!isBurger">
+      <div class="header-burger-list" [class.on]="isBurger">
          <ul>
             <li [routerLink]="[ '/deliveryAndPayment']">Доставка та оплата</li>
-            <li [routerLink]="[ '/about']" >Про нас</li>
+            <li [routerLink]="[ '/about']">Про нас</li>
             <li [routerLink]="[ '/discount']">Акції</li>
          </ul>
-      </div>  
+      </div>
    </div>
    <div class="header-call-back">
       <button>
          <img src="https://monosushi.com.ua/wp-content/uploads/2020/10/phone.svg" alt="phone">
-         <span>Ми зателефонуємо</span>
       </button>
    </div>
    <div class="header-info">
       <p><b>(097) 878 08 37</b></p>
       <p>Працюємо з <b>11:00</b> до <b>22:30</b></p>
    </div>
-   <div class="header-user" [routerLink]="[ '/admin']" >
-      <div>
-         <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
-      </div>  
-   </div>
+   <ng-container *ngIf="!isAdmin && !isUser">
+      <div class="header-user" (click)="isLogin = !isLogin" >
+         <div>
+            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
+         </div>
+      </div>
+   </ng-container>
+   <ng-container *ngIf="isUser">
+      <div class="header-user" (click)="isList = !isList">
+         <div class="header-user-image">
+            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
+         </div>
+         <div class="header-user-list" [class.on]="isList">
+            <ul>
+               <li [routerLink]="[ '/cabinet/userInfo']">Особисті дані</li>
+               <li [routerLink]="[ '/cabinet/orderHistory']">Історія замовлень</li>
+               <li [routerLink]="[ '/cabinet/changePassword']">Зміна паролю</li>
+               <li (click)="logOut()">Вихід</li>
+            </ul>
+         </div>
+      </div>
+   </ng-container>
+   <ng-container>
+      <div class="header-user" [routerLink]="[ '/admin']" *ngIf="isAdmin">Адмін</div>
+   </ng-container>
+   <ng-container *ngIf="isLogin">
+      <div class="login-container" >
+         <div class="login-container-box">
+            <p (click)="isLogin = !isLogin">X</p>
+            <h2>Вхід в кабінет</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+               <input formControlName="email" type="email" id="email" placeholder="*Ваш email">
+               <input formControlName="password" type="password" id="password" placeholder="*Пароль">
+               <button type="submit" [disabled]="loginForm.invalid">Увійти в кабінет</button>
+            </form>
+            <div>
+               <p>Забули пароль?</p>
+               <p>Зареєструватись</p>
+            </div>
+         </div>
+      </div>
+   </ng-container>
    <div (click)="openBasket()" class="header-basket">
       <i>
          <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/basket.svg" alt="basket">
@@ -57,29 +94,32 @@
       </div>
    </div>
 </div>
-<div class="basket-container" *ngIf="basketIsOpen">
-   <div class="basket">
-      <table>
-         <tr>
-            <td><img
-               src="https://monosushi.com.ua/wp-content/uploads/2020/11/2.-zapechenyj-syrnyj-z-los.jpg.pagespeed.ce.ySjaJht9cw.jpg"
-               alt="roll">
-            </td>
-            <td><b>Запечений</b></td>
-            <td>
-               <div class="count">
-                  <button>-</button>
-                  <input type="text" [value]="1">
-                  <button>+</button>
-               </div>  
-            </td>
-            <td><b>174</b> грн</td>
-            <td><i class="uil uil-trash-alt"></i></td>
-         </tr>
-      </table>
-      <div class="basket-order">
-         <div>Сума:<b>174</b> грн</div>
-         <button (click)="openBasket()">Оформити замовлення</button>
+<ng-container *ngIf="basketIsOpen">
+   <div class="basket-container" >
+      <div class="basket">
+         <table>
+            <tr>
+               <td><img
+                     src="https://monosushi.com.ua/wp-content/uploads/2020/11/2.-zapechenyj-syrnyj-z-los.jpg.pagespeed.ce.ySjaJht9cw.jpg"
+                     alt="roll">
+               </td>
+               <td><b>Запечений</b></td>
+               <td>
+                  <div class="count">
+                     <button>-</button>
+                     <input type="text" [value]="1">
+                     <button>+</button>
+                  </div>
+               </td>
+               <td><b>174</b> грн</td>
+               <td><i class="uil uil-trash-alt"></i></td>
+            </tr>
+         </table>
+         <div class="basket-order">
+            <div>Сума:<b>174</b> грн</div>
+            <button (click)="openBasket()">Оформити замовлення</button>
+         </div>
       </div>
    </div>
-</div>
+</ng-container>
+
