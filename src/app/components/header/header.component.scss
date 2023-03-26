@@ -1,7 +1,5 @@
 @import '../../shared/style/variables';
 
-
-
 .header{
    width: 100%;
    height: 90px;
@@ -9,12 +7,15 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   z-index: 100;
    position: fixed;
+   z-index: 10;
    top: 0;
    left:0;
    &.shadow{
       box-shadow: 0 0 4px 1px rgb(216, 216, 216);
+   }
+   &.zIndex{
+      z-index: 2000;
    }
    &-logo{
       height: 100%;
@@ -96,7 +97,12 @@
          flex-direction: column;
          justify-content: center;
          align-items: center;
-         z-index: 5;
+         z-index: 6;
+         &:hover{
+            border-color:$main-color;
+            cursor: pointer;
+            transition: 0.35s;
+         }
          span{
             width: 25px;
             display: block;
@@ -133,11 +139,7 @@
                }
             }  
          }
-         &:hover{
-            border-color:$main-color;
-            cursor: pointer;
-            transition: 0.35s;
-         }
+         
       }
       &-list{
          position: absolute;
@@ -149,13 +151,14 @@
          border-radius: 10px;
          background-color: rgba(255, 255, 255);
          opacity: 0;
-         z-index: 4;
+         z-index: 3;
          padding: 80px 0 0 30px;
          overflow: hidden;
          transition: 0.35s;
          &.on{
             opacity: 1;
             height: 180px;
+            z-index: 5;
             transition: 0.35s;
          }
          li{
@@ -182,6 +185,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 4;
       button{
          height: 40px;
          width: 40px;
@@ -211,15 +215,27 @@
       }
    }
    &-user{
-      width: 50px;
-      height: 100%;
+      width: 75px;
+      height: 75px;
+      border: 2px solid transparent;
+      border-radius: 10px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       font-size: 14px;
       font-weight: bold;
       position: relative;
-      cursor: pointer;
+      transition: 0.35s;
+      &:hover{
+         border-color: $main-color;
+         cursor: pointer;
+         transition: 0.35s;
+      }
+      p{
+         text-align: center;
+         margin-top: 10px;
+      }
       &-image{
          width: 50px;
          height: 50px;
@@ -227,14 +243,8 @@
          border-radius: 10px;
          display: flex;
          align-items: center;
-         z-index: 10;
          justify-content: center;
-         transition: 0.35s;
-         &:hover{
-            border-color: $main-color;
-            cursor: pointer;
-            transition: 0.35s;
-         }
+         z-index: 10;
          img{
             z-index: 10;
             width: 25px;
@@ -319,200 +329,5 @@
    }
 }
 
-.basket-container{
-   width: 100%;
-   height: 100%;
-   background-color: rgba(83, 83, 83, 0.616);
-   position: fixed;
-   top: 0;
-   right: 0;
-   z-index: 10;
-   display: flex;
-   justify-content: flex-end;
-   align-items: flex-start;
-   .basket{
-      width: 600px;
-      height: 200px;
-      margin-top: 80px;
-      padding: 10px 20px;
-      position: relative;
-      z-index: 10;
-      background-color: white;
-      border-radius: 10px;
-      table{
-         width:600px;
-         margin-top: 20px;
-         tr>td{
-            height: 60px;
-            vertical-align: middle;
-            text-align: center;
-            &:nth-child(1){
-               width: 100px;
-               img{
-                  height: 50px;
-               }
-            }
-            &:nth-child(2){
-               width: 150px;
-            }
-            &:nth-child(3){
-               width: 100px;
-               .count{
-                  margin: 0 auto;
-                  width: 70px;
-                  padding: 5px 10px;
-                  border: 1px solid $gray;
-                  border-radius: 10px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  button{
-                     width: 16px;
-                     height: 25px;
-                     border: 1px solid transparent;
-                     border-radius: 5px;
-                     background-color: transparent;
-                     font-size: 18px;
-                     color: $dark-gray;
-                     display: flex;
-                     justify-content: center;
-                     align-items: center;
-                     &:hover{
-                        cursor: pointer;
-                        background-color: $main-color;
-                        transition: 0.35s;
-                     }
-                  }
-                  input{
-                     width: 20px;
-                     text-align: center;
-                     border: none;
-                     font-weight: bold;
-                     font-size: 16px;
-                  }
-               }
-            }
-            &:nth-child(4){
-               width: 50px;
-            }
-            &:nth-child(5){
-               width: 20px;
-            }
-         }      
-      }
-      &-order{
-         position: absolute;
-         bottom:0;
-         left: 0;
-         padding: 0 20px;
-         width: 600px;
-         height: 100px;
-         background-color: $main-color;
-         border-bottom-left-radius: 10px;
-         border-bottom-right-radius: 10px;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         button{
-            display: block;
-            width: 220px;
-            height: 50px;
-            border-radius: 10px;
-            background-color: white;
-            border: 1px solid white;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            &:hover{
-               cursor: pointer;
-               border-color: rgb(98, 159, 230);
-            }
-         }
-      }
-   }
-}
-.login-container{
-   width: 100%;
-   height: 100%;
-   background-color: rgba(83, 83, 83, 0.616);
-   position: fixed;
-   top: 0;
-   right: 0;
-   z-index: 10;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   &-box{
-      width: 500px;
-      height: 350px;
-      background-color: white;
-      border-radius: 10px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      p{
-         width: 100%;
-         height: 10px;
-         font-size: 16px;
-         font-weight: bold;
-         text-align: right;
-         color: $dark-gray;
-         cursor: pointer;
-      }
-      h2{
-         width: 400px;
-         height: 30px;
-         margin: 30px 0 20px;
-         font-size: 22px;
-         font-weight: bold;
-         text-align: center;
-      }
-      form{
-         width: 440px;
-         display: flex;
-         flex-direction: column;
-         align-items: center;
-         input{
-            width: 400px;
-            height: 30px;
-            border: 1px solid $gray;
-            border-radius: 10px;
-            padding: 10px 20px;
-            margin: 5px 0;
-            // box-shadow: 0 0 1px 1px rgb(218, 216, 216);
-         }
-         button{
-            width: 440px;
-            height: 50px;
-            margin-top: 10px;
-            background-color: $main-color;
-            border: 1px solid $main-color;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            &:hover{
-               cursor: pointer;
-               background-color: white;
-            }
-         }
-      }
-      div{
-         width: 440px;
-         height: 20px;
-         margin-top: 10px;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         p{
-            width: 110px;
-            font-size: 12px;
-            text-align: start;
-            color: black;
-            font-weight: bold;
-         }
-      }
-   }
-    
-}
+
+

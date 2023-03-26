@@ -1,0 +1,13 @@
+
+<div class="container">
+   <div class="empty">
+      <img src="	https://monosushi.com.ua/wp-content/themes/monosushi/img/icons/cart-empty-img.svg" alt="">
+      <p><b>Кошик порожній</b></p>
+      <button mat-raised-button mat-dialog-close color="primary" [routerLink]="[ '/home']">Перейти до каталогу</button>
+   </div>
+   
+   <footer>
+      <div>Сума:<b>0</b> грн</div>
+      <button (click)="openBasket()" mat-raised-button color="primary" disabled>Оформити замовлення</button>
+   </footer>
+</div>

@@ -19,6 +19,11 @@
          line-height: 60px;
          font-size: 14px;
          color: $dark-gray;
+         transition: 0.35s;
+         &:hover{
+            cursor: pointer;
+            transition: 0.35s;
+         }
          &.active{
             color: black;
             font-weight: bold;

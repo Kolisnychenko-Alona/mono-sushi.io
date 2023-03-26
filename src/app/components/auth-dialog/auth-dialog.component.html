@@ -1,0 +1,52 @@
+<div class="container">
+   <p mat-dialog-close (click)="isLogin = !isLogin">X</p>
+   <div class="enter-block" *ngIf="!registration">
+      <h2>Вхід в кабінет</h2>
+      <form [formGroup]="loginForm">
+         <div class="form-group">
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="*Ваш email" type="email" formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="*Пароль" type="password" formControlName="password" required>
+            </mat-form-field>
+            <button mat-raised-button mat-dialog-close color="primary" [disabled]="loginForm.invalid" type="button" (click)="loginUser()">Увійти в кабінет</button>
+         </div>
+      </form>
+      <p (click)="registration = true">Зареєструватись</p>
+   </div>
+   <div class="signIn-block" *ngIf="registration">
+      <h2>Зареєструватись</h2>
+      <form [formGroup]="registrationForm">
+         <div class="form-box double">
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="Ваше ім'я" type="text" formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="Ваше прізвище" type="text" formControlName="lastName" required>
+            </mat-form-field>
+         </div>
+         <div class="form-box">
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="Ваш телефон" type="text" formControlName="phone" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="Ваш email" type="email" formControlName="email" required>
+            </mat-form-field>
+         </div>
+         <div class="form-box double">
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="Пароль" type="password" formControlName="password" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="Повторіть пароль" type="password" formControlName="confirmPassword" required>
+            </mat-form-field>
+         </div>
+         <button mat-raised-button color="primary" [disabled]="registrationForm.invalid" type="button" (click)="registerUser()">Зареєструватись</button>
+      </form>
+      <p (click)="registration = false">Вже зареєстровані? <b>Увійти</b></p>
+   </div>
+   
+</div>
+
+

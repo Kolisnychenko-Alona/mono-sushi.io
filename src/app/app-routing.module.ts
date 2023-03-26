@@ -23,6 +23,7 @@ import { AdminGuard } from './shared/guards/auth/admin.guard';
 import { UserInformationComponent } from './pages/cabinet/user-information/user-information.component';
 import { OrderHistoryComponent } from './pages/cabinet/order-history/order-history.component';
 import { ChangePasswordComponent } from './pages/cabinet/change-password/change-password.component';
+import { AuthAdminComponent } from './pages/auth-admin/auth-admin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -53,6 +54,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'userInfo' },
     ],
   },
+  { path: 'auth-admin', component: AuthAdminComponent },
   {
     path: 'admin',
     component: AdminComponent,

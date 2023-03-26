@@ -1,1 +1,37 @@
-<p>user-information works!</p>
+<div class="container">
+   <div class="personal-data">
+      <div class="personal-data-title">
+         <div class="marker">1</div>
+         <h2><b>Особисті дані</b></h2>
+      </div>
+      <form [formGroup]="personalForm">
+         <div class="form-box double">
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="*Ваше ім'я" type="text" formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="*Ваше прізвище" type="text" formControlName="lastName" required>
+            </mat-form-field>
+         </div>
+         <div class="form-box">
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="*Ваш номер телефону" type="phone" formControlName="phone" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+               <input matInput placeholder="*Ваш email" type="email" formControlName="email" required>
+            </mat-form-field>
+         </div>
+      </form>
+   </div>
+   <div class="addresses">
+      <div class="addresses-title">
+         <div class="marker">2</div>
+         <h2><b>Адреси</b></h2>
+      </div>
+      <div class="btn">
+         <button mat-raised-button color="primary" type="button" (click)="addAddress()">Додати адресу</button>
+         <button mat-raised-button color="primary" [disabled]="personalForm.invalid" type="button"
+            (click)="saveChanges()">Зберегти зміни</button>
+      </div>
+   </div>
+</div>

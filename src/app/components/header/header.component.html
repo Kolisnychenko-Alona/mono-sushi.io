@@ -1,4 +1,4 @@
-<div class="header" [class.shadow]="scroll">
+<div class="header" [class.shadow]="scroll" [class.zIndex]="basketIsOpen" >
    <div [routerLink]="[ '/home']" class="header-logo">
       <img src="https://monosushi.com.ua/wp-content/uploads/2021/06/logo.svg" alt="monosushi">
    </div>
@@ -42,8 +42,8 @@
       <p><b>(097) 878 08 37</b></p>
       <p>Працюємо з <b>11:00</b> до <b>22:30</b></p>
    </div>
-   <ng-container *ngIf="!isAdmin && !isUser">
-      <div class="header-user" (click)="isLogin = !isLogin" >
+   <ng-container *ngIf="!isUser && !isAdmin">
+      <div class="header-user" (click)="openLoginDialog()" >
          <div>
             <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
          </div>
@@ -51,6 +51,7 @@
    </ng-container>
    <ng-container *ngIf="isUser">
       <div class="header-user" (click)="isList = !isList">
+         <p>{{userName}}</p>
          <div class="header-user-image">
             <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
          </div>
@@ -64,27 +65,25 @@
          </div>
       </div>
    </ng-container>
-   <ng-container>
-      <div class="header-user" [routerLink]="[ '/admin']" *ngIf="isAdmin">Адмін</div>
-   </ng-container>
-   <ng-container *ngIf="isLogin">
-      <div class="login-container" >
-         <div class="login-container-box">
-            <p (click)="isLogin = !isLogin">X</p>
-            <h2>Вхід в кабінет</h2>
-            <form [formGroup]="loginForm" (ngSubmit)="logIn()">
-               <input formControlName="email" type="email" id="email" placeholder="*Ваш email">
-               <input formControlName="password" type="password" id="password" placeholder="*Пароль">
-               <button type="submit" [disabled]="loginForm.invalid">Увійти в кабінет</button>
-            </form>
-            <div>
-               <p>Забули пароль?</p>
-               <p>Зареєструватись</p>
-            </div>
+   <ng-container *ngIf="isAdmin">
+      <div class="header-user">
+         <p>Admin</p>
+         <div class="header-user-image">
+            <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg" alt="user">
          </div>
-      </div>
+      </div> 
    </ng-container>
-   <div (click)="openBasket()" class="header-basket">
+
+   <div (click)="openBasket()" class="header-basket" *ngIf="!basketIsOpen">
+      <i>
+         <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/basket.svg" alt="basket">
+         <span>0</span>
+      </i>
+      <div class="header-basket-price">
+         <b>{{total}}</b><span>грн</span>
+      </div>
+   </div>
+   <div class="header-basket" *ngIf="basketIsOpen">
       <i>
          <img src="https://monosushi.com.ua/wp-content/themes/monosushi/img/basket.svg" alt="basket">
          <span>0</span>
@@ -94,32 +93,5 @@
       </div>
    </div>
 </div>
-<ng-container *ngIf="basketIsOpen">
-   <div class="basket-container" >
-      <div class="basket">
-         <table>
-            <tr>
-               <td><img
-                     src="https://monosushi.com.ua/wp-content/uploads/2020/11/2.-zapechenyj-syrnyj-z-los.jpg.pagespeed.ce.ySjaJht9cw.jpg"
-                     alt="roll">
-               </td>
-               <td><b>Запечений</b></td>
-               <td>
-                  <div class="count">
-                     <button>-</button>
-                     <input type="text" [value]="1">
-                     <button>+</button>
-                  </div>
-               </td>
-               <td><b>174</b> грн</td>
-               <td><i class="uil uil-trash-alt"></i></td>
-            </tr>
-         </table>
-         <div class="basket-order">
-            <div>Сума:<b>174</b> грн</div>
-            <button (click)="openBasket()">Оформити замовлення</button>
-         </div>
-      </div>
-   </div>
-</ng-container>
+
 

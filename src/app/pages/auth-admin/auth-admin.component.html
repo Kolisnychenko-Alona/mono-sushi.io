@@ -1,0 +1,15 @@
+<div class="container">
+   <h2>Вхід в кабінет адміністратора</h2>
+   <form [formGroup]="loginForm">
+      <div class="form-group">
+         <mat-form-field appearance="outline">
+            <input matInput placeholder="*Ваш email" type="email" formControlName="email" required>
+         </mat-form-field>
+         <mat-form-field appearance="outline">
+            <input matInput placeholder="*Пароль" type="password" formControlName="password" required>
+         </mat-form-field>
+         <button mat-raised-button color="primary" [disabled]="loginForm.invalid" type="button"
+            (click)="loginUser()">Увійти в кабінет</button>
+      </div>
+   </form>
+</div>

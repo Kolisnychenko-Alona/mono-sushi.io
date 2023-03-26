@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ROLE } from 'src/app/shared/constants/role.constant';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
@@ -7,6 +7,8 @@ import { IProductResponse } from 'src/app/shared/interfaces/product/product.inte
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { OrderService } from 'src/app/shared/services/order/order.service';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { BasketDialogComponent } from '../basket-dialog/basket-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -18,10 +20,11 @@ export class HeaderComponent implements OnInit {
   public scroll = false;
   public basketIsOpen = false;
   public isLogin = false;
-  public loginForm!: FormGroup;
-  public isAdmin = false;
+  
   public isUser = false;
+  public isAdmin = false;
   public isList = false;
+  public userName = '';
 
   public userCategories: Array<ICategoryResponse> = [];
   private basket: Array<IProductResponse> = [];
@@ -30,26 +33,18 @@ export class HeaderComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private orderService: OrderService,
-    private fb: FormBuilder,
+
     private accountService: AccountService,
     private router: Router,
-
-  ) { }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
     this.loadBasket();
     this.updateBasket();
-    this.initForm();
     this.checkLogin();
     this.checkUpdatesLogin();
-  }
-
-  initForm(): void {
-    this.loginForm = this.fb.group({
-      email: [null, Validators.required],
-      password: [null, Validators.required],
-    });
   }
 
   burger(): void {
@@ -91,43 +86,20 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  openBasket(): void {
-    this.basketIsOpen = !this.basketIsOpen;
-  }
-
-  logIn(): void {
-    this.accountService.login(this.loginForm.value).subscribe(
-      (data) => {
-        if (data && data.length > 0) {
-          const user = data[0];
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.accountService.isLogin$.next(true);
-          if (user && user.role === ROLE.USER) {
-            this.router.navigate(['/cabinet']);
-          } else if (user && user.role === ROLE.ADMIN) {
-            this.router.navigate(['/admin']);
-          }
-          this.isLogin = false;
-        }
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
-  }
-
   checkLogin(): void {
     const currentUser = JSON.parse(
       localStorage.getItem('currentUser') as string
     );
     if (currentUser && currentUser.role === ROLE.USER) {
       this.isUser = true;
+      this.userName = currentUser.firstName + ' ' + currentUser.lastName;
     } else if (currentUser && currentUser.role === ROLE.ADMIN) {
       this.isAdmin = true;
+      this.userName = currentUser.firstName + ' ' + currentUser.lastName;
     } else {
-      this.isAdmin = false;
       this.isUser = false;
-    }
+      this.isAdmin = false;
+    }  
   }
 
   checkUpdatesLogin() {
@@ -140,5 +112,29 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
     localStorage.removeItem('currentUser');
     this.accountService.isLogin$.next(true);
+    this.isUser = false;
+    this.isList = false;
+  }
+
+  openLoginDialog(): void {
+    this.isLogin = !this.isLogin;
+    this.dialog.open(AuthDialogComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'auth-dialog',
+      autoFocus: false
+    })
+  }
+  openBasket(): void{
+    this.basketIsOpen = true;  
+    this.dialog
+      .open(BasketDialogComponent, {
+        backdropClass: 'dialog-basket-back',
+        panelClass: 'basket-dialog',
+        position: { top: '90px', right: '0px' },
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.basketIsOpen = false;
+      });
   }
 }
