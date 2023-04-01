@@ -11,6 +11,15 @@ import { ROLE } from 'src/app/shared/constants/role.constant';
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { ConfirmPassword } from 'src/app/shared/confirm.validator';
 
+export interface IRegister {
+  firstName: string;
+  lastName: string;
+  phone: number;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
+
 @Component({
   selector: 'app-auth-dialog',
   templateUrl: './auth-dialog.component.html',
@@ -21,6 +30,8 @@ export class AuthDialogComponent implements OnInit {
   public registrationForm!: FormGroup;
   public isLogin = false;
   public registration = false;
+  private registrationData!: IRegister;
+  // public checkPassword = false;
 
   constructor(
     private fb: FormBuilder,
@@ -29,13 +40,13 @@ export class AuthDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<AuthDialogComponent>,
     private auth: Auth,
     private afs: Firestore,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
   }
- 
+
   initForm(): void {
     this.loginForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
@@ -47,7 +58,10 @@ export class AuthDialogComponent implements OnInit {
       phone: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required],
-      confirmPassword: [null, [Validators.required, ConfirmPassword('password')]],
+      confirmPassword: [
+        null,
+        [Validators.required, ConfirmPassword('password')],
+      ],
     });
   }
 
@@ -86,9 +100,10 @@ export class AuthDialogComponent implements OnInit {
     );
   }
   registerUser(): void {
-    const { email, password, firstName, lastName, phone } =
+    const { email, password } =
       this.registrationForm.value;
-    this.signUp(email, password, firstName, lastName, phone)
+    this.registrationData = this.registrationForm.value;
+    this.signUp(email, password)
       .then(() => {
         this.toastr.success('User successfully created');
         this.login(email, password)
@@ -107,13 +122,7 @@ export class AuthDialogComponent implements OnInit {
       });
   }
 
-  async signUp(
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    phone: number
-  ): Promise<any> {
+  async signUp( email: string, password: string): Promise<any> {
     const credential = await createUserWithEmailAndPassword(
       this.auth,
       email,
@@ -121,9 +130,9 @@ export class AuthDialogComponent implements OnInit {
     );
     const user = {
       email: credential.user.email,
-      firstName: firstName,
-      lastName: lastName,
-      phone: phone,
+      firstName: this.registrationData.firstName,
+      lastName: this.registrationData.lastName,
+      phone: this.registrationData.phone,
       role: 'USER',
       orders: [],
     };

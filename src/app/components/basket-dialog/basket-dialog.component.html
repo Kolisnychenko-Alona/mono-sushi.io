@@ -1,13 +1,32 @@
 
 <div class="container">
-   <div class="empty">
-      <img src="	https://monosushi.com.ua/wp-content/themes/monosushi/img/icons/cart-empty-img.svg" alt="">
-      <p><b>Кошик порожній</b></p>
-      <button mat-raised-button mat-dialog-close color="primary" [routerLink]="[ '/home']">Перейти до каталогу</button>
-   </div>
+   <ng-container *ngIf="empty; else basket">
+      <div class="empty">
+         <img src="	https://monosushi.com.ua/wp-content/themes/monosushi/img/icons/cart-empty-img.svg" alt="">
+         <p><b>Кошик порожній</b></p>
+         <button mat-raised-button mat-dialog-close color="primary" [routerLink]="[ '/home']">Перейти до каталогу</button>
+      </div>
+   </ng-container>
+   <ng-template #basket>
+      <table>
+         <tr *ngFor="let product of basketProducts">
+            <td><img [src]="product.imagePath" alt="product photo"></td>
+            <td>{{product.name}}</td>
+            <td>
+               <div class="count">
+                  <button type="button" (click)="productCount(product, false)">-</button>
+                  <input type="text" [value]="product.count">
+                  <button type="button" (click)="productCount(product, true)">+</button>
+               </div>
+            </td>
+            <td><b>{{product.price * product.count}}</b> грн</td>
+            <td><button type="button" (click)="deleteProduct(product)"><i class="uil uil-trash-alt"></i></button></td>
+         </tr>
+      </table>
+   </ng-template>
    
    <footer>
-      <div>Сума:<b>0</b> грн</div>
-      <button (click)="openBasket()" mat-raised-button color="primary" disabled>Оформити замовлення</button>
+      <div>Сума:<b>{{total}}</b> грн</div>
+      <button (click)="confirmOrder()" mat-raised-button mat-dialog-close color="primary" [routerLink]="[ '/checkout']">Оформити замовлення</button>
    </footer>
 </div>

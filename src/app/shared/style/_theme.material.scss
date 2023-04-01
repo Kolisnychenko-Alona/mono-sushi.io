@@ -4,6 +4,14 @@
 
 // change default style MATERIAL
 
+// $my-app-theme: (
+//   color: (
+//     primary: mat-palette($mat-indigo),
+//     accent: mat-palette($mat-pink, A200, A100, A400),
+//     warn: mat-palette($mat-red)
+//   )
+// );
+
 $primary-default-value: (
   50: #c7e1f7,
   100: #c7e1f7,
@@ -81,10 +89,15 @@ $custom-theme: mat.define-light-theme($custom-theme-primary, $custom-theme-accen
   background-color: rgba(0, 0, 0, 0.701);
 }
 .basket-dialog{
-  width: 550px;
-  min-height: 350px;
+  width: 600px;
+  min-height: 140px;
   .mat-mdc-dialog-container .mdc-dialog__surface {
     border-radius: 0;
     border-bottom-left-radius: 10px;
   }
+}
+.call-dialog{
+  width: 500px;
+  min-height: 350px;
+  padding: 20px;
 }

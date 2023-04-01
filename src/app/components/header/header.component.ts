@@ -9,6 +9,7 @@ import { CategoryService } from 'src/app/shared/services/category/category.servi
 import { OrderService } from 'src/app/shared/services/order/order.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { BasketDialogComponent } from '../basket-dialog/basket-dialog.component';
+import { CallDialogComponent } from '../call-dialog/call-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   public scroll = false;
   public basketIsOpen = false;
   public isLogin = false;
-  
+
   public isUser = false;
   public isAdmin = false;
   public isList = false;
@@ -99,7 +100,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isUser = false;
       this.isAdmin = false;
-    }  
+    }
   }
 
   checkUpdatesLogin() {
@@ -121,11 +122,11 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(AuthDialogComponent, {
       backdropClass: 'dialog-back',
       panelClass: 'auth-dialog',
-      autoFocus: false
-    })
+      autoFocus: false,
+    });
   }
-  openBasket(): void{
-    this.basketIsOpen = true;  
+  openBasket(): void {
+    this.basketIsOpen = true;
     this.dialog
       .open(BasketDialogComponent, {
         backdropClass: 'dialog-basket-back',
@@ -136,5 +137,15 @@ export class HeaderComponent implements OnInit {
       .subscribe(() => {
         this.basketIsOpen = false;
       });
+  }
+  closeBasket(): void {
+    this.dialog.closeAll();
+  }
+
+  openCallBackDialog(): void {
+    this.dialog.open(CallDialogComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'call-dialog',
+    });
   }
 }
