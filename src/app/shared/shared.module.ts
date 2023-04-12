@@ -16,11 +16,10 @@ const MATERIAL = [
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
-  imports: [...MATERIAL, FormsModule, ReactiveFormsModule, HttpClientModule],
-  exports: [...MATERIAL, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [...MATERIAL, FormsModule, ReactiveFormsModule],
+  exports: [...MATERIAL, FormsModule, ReactiveFormsModule],
 })
 export class SharedModule {};

@@ -17,11 +17,20 @@ export class UserInformationComponent implements OnInit {
     const currentUser = JSON.parse(
       localStorage.getItem('currentUser') as string
     );
+    let user = currentUser;
+    if (!currentUser) {
+      user = {
+        firstName: 'name',
+        lastName: 'name',
+        phone: '1',
+        email: '@'
+      }
+    }
     this.personalForm = this.fb.group({
-      firstName: [currentUser.firstName, Validators.required],
-      lastName: [currentUser.lastName, Validators.required],
-      phone: [currentUser.phone, Validators.required],
-      email: [currentUser.email, Validators.required],
+      firstName: [user.firstName, Validators.required],
+      lastName: [user.lastName, Validators.required],
+      phone: [user.phone, Validators.required],
+      email: [user.email, Validators.required],
     });
   }
 

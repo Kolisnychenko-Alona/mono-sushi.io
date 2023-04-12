@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   public userName = '';
 
   public userCategories: Array<ICategoryResponse> = [];
-  private basket: Array<IProductResponse> = [];
+  public basket: Array<IProductResponse> = [];
   public total = 0;
 
   constructor(
@@ -89,13 +89,14 @@ export class HeaderComponent implements OnInit {
 
   checkLogin(): void {
     const currentUser = JSON.parse(
-      localStorage.getItem('currentUser') as string
-    );
+      localStorage.getItem('currentUser') as string);
     if (currentUser && currentUser.role === ROLE.USER) {
       this.isUser = true;
       this.userName = currentUser.firstName + ' ' + currentUser.lastName;
+      this.isAdmin = false;
     } else if (currentUser && currentUser.role === ROLE.ADMIN) {
       this.isAdmin = true;
+      this.isUser = false;
       this.userName = currentUser.firstName + ' ' + currentUser.lastName;
     } else {
       this.isUser = false;

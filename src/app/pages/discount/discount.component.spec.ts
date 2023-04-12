@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DiscountComponent } from './discount.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DiscountComponent', () => {
   let component: DiscountComponent;
@@ -8,9 +9,9 @@ describe('DiscountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiscountComponent ]
-    })
-    .compileComponents();
+      declarations: [DiscountComponent],
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DiscountComponent);
     component = fixture.componentInstance;

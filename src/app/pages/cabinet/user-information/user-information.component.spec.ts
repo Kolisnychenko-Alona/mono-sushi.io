@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserInformationComponent } from './user-information.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('UserInformationComponent', () => {
   let component: UserInformationComponent;
@@ -8,7 +9,8 @@ describe('UserInformationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserInformationComponent ]
+      declarations: [ UserInformationComponent ],
+      imports: [ ReactiveFormsModule ]
     })
     .compileComponents();
 

@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthAdminComponent } from './auth-admin.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Auth } from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 describe('AuthAdminComponent', () => {
   let component: AuthAdminComponent;
@@ -8,9 +14,19 @@ describe('AuthAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthAdminComponent ]
-    })
-    .compileComponents();
+      declarations: [AuthAdminComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        MatDialogModule
+      ],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: Auth, useValue: {} },
+        { provide: Firestore, useValue: {} },
+        { provide: ToastrService, useValue: {} },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AuthAdminComponent);
     component = fixture.componentInstance;
@@ -19,5 +35,9 @@ describe('AuthAdminComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should init auth admin form', () => {
+    expect(component.loginForm.value).toEqual({ email: null, password: null });
   });
 });

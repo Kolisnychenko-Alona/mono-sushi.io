@@ -23,5 +23,17 @@ export class DiscountInfoComponent implements OnInit {
       this.separatedText = response['discountInfo'].text.split('.');
       this.separatedText.pop();
     })
+    this.isEmpty()
+  }
+  isEmpty(): void{
+    if (!this.discount) {
+      this.discount={
+        name: 'name',
+        title: 'title',
+        text: 'text',
+        imagePath: 'image',
+        id: 1
+      }
+    }
   }
 }

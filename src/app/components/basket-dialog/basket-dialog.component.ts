@@ -8,7 +8,7 @@ import { OrderService } from 'src/app/shared/services/order/order.service';
   styleUrls: ['./basket-dialog.component.scss'],
 })
 export class BasketDialogComponent implements OnInit {
-  private basket: Array<IProductResponse> = [];
+  public basket: Array<IProductResponse> = [];
   public basketProducts: Array<IProductResponse> = [];
   public total = 0;
   public empty = true;
@@ -25,7 +25,7 @@ export class BasketDialogComponent implements OnInit {
       this.basket = JSON.parse(localStorage.getItem('basket') as string);
       this.empty = false;
       this.basketProducts = this.basket;
-    }
+    } else this.empty = true;
     this.getTotalPrice();
   }
   getTotalPrice(): void {

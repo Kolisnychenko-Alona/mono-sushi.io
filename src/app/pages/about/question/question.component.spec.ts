@@ -20,4 +20,20 @@ describe('QuestionComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should change counter, isClick and secondClick', () => {
+    component.counter = 1;
+    spyOn(component, 'down').and.callThrough();
+    component.down();
+    expect(component.down).toHaveBeenCalled();
+    expect(component.counter).toBe(2);
+    expect(component.isClick).toBe(true);
+    expect(component.secondClick).toBe(false);
+    component.counter=2;
+    component.down();
+    expect(component.down).toHaveBeenCalled();
+    expect(component.counter).toBe(1);
+    expect(component.isClick).toBe(false);
+    expect(component.secondClick).toBe(true);
+  });
 });
