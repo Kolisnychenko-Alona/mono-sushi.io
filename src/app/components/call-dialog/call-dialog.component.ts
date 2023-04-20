@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { stringLength } from '@firebase/util';
+import { CallBackService } from 'src/app/shared/services/call/call-back.service';
 
 @Component({
   selector: 'app-call-dialog',
@@ -11,7 +12,10 @@ export class CallDialogComponent {
   public isCallDialog = false;
   public callBackForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private callBackService: CallBackService
+  ) { }
 
   ngOnInit(): void {
     this.initCallBackForm();
@@ -22,5 +26,9 @@ export class CallDialogComponent {
       phone: [null, [Validators.required]]
     });
   }
-  callBack(): void { };
+  callBack(): void { 
+    this.callBackService.create(this.callBackForm.value).then(() => {
+      this.callBackForm.reset();
+    });
+   };
 }

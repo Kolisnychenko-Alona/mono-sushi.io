@@ -29,21 +29,39 @@ export class CheckoutComponent implements OnInit {
     const currentUser = JSON.parse(
       localStorage.getItem('currentUser') as string
     );
-    let user = currentUser;
-    this.orderForm = this.fb.group({
-      basket: [this.basketProducts, Validators.required],
-      cutleryCount: [null, Validators.required],
-      holdersCount: [null, Validators.required],
-      payment: ['готівка', Validators.required],
-      delivery: ['доставка', Validators.required],
-      name: [user.firstName, Validators.required],
-      phone: [user.phone, Validators.required ],
-      street: [null, Validators.required ],
-      houseNumber: [null, Validators.required ],
-      entrance: [null],
-      flat: [null],
-      address: [null]
-    });
+    if (currentUser) {
+      let user = currentUser;
+      this.orderForm = this.fb.group({
+        basket: [this.basketProducts, Validators.required],
+        cutleryCount: [null, Validators.required],
+        holdersCount: [null, Validators.required],
+        payment: ['готівка', Validators.required],
+        delivery: ['доставка', Validators.required],
+        name: [user.firstName, Validators.required],
+        phone: [user.phone, Validators.required],
+        street: [null, Validators.required],
+        houseNumber: [null, Validators.required],
+        entrance: [null],
+        flat: [null],
+        address: [null],
+      });
+    } else {
+      this.orderForm = this.fb.group({
+        basket: [this.basketProducts, Validators.required],
+        cutleryCount: [null, Validators.required],
+        holdersCount: [null, Validators.required],
+        payment: ['готівка', Validators.required],
+        delivery: ['доставка', Validators.required],
+        name: [null, Validators.required],
+        phone: [null, Validators.required],
+        street: [null, Validators.required],
+        houseNumber: [null, Validators.required],
+        entrance: [null],
+        flat: [null],
+        address: [null],
+      });
+    }
+    
     this.orderForm.get('delivery')?.valueChanges.subscribe((deliveryType) => {
       if (deliveryType === 'доставка') {
         this.orderForm.get('street')?.setValidators([Validators.required]);
