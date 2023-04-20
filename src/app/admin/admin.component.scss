@@ -21,6 +21,9 @@
             line-height: 75px;
             font-size: 18px;
             color: $dark-gray;
+            &:hover{
+               cursor: pointer;
+            }
          }
          &-select.active{
             color: black;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ICategoryResponse } from 'src/app/shared/interfaces/category/ICategory';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
@@ -13,7 +14,7 @@ export class AdminCategoryComponent implements OnInit {
   public isDown = false;
   public isAdding = false;
   public editStatus = false;
-  private currentCategoryId = 0;
+  private currentCategoryId!: string;
   public categoryForm!: FormGroup;
   public isUploaded = false;
 
@@ -23,6 +24,7 @@ export class AdminCategoryComponent implements OnInit {
     private categoryService: CategoryService,
     private imageService: ImageService,
     private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class AdminCategoryComponent implements OnInit {
 
   getCategories(): void {
     this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data;
+      this.adminCategories = data as ICategoryResponse[];
     });
   }
 
@@ -59,12 +61,14 @@ export class AdminCategoryComponent implements OnInit {
     if (this.editStatus) {
       this.categoryService
         .update(this.categoryForm.value, this.currentCategoryId)
-        .subscribe(() => {
+        .then(() => {
           this.getCategories();
+          this.toastr.success('Category successfully updated');
         });
     } else {
-      this.categoryService.create(this.categoryForm.value).subscribe(() => {
+      this.categoryService.create(this.categoryForm.value).then(() => {
         this.getCategories();
+        this.toastr.success('Category successfully create');
       });
     }
     this.editStatus = false;
@@ -86,8 +90,9 @@ export class AdminCategoryComponent implements OnInit {
   }
 
   deleteCategory(category: ICategoryResponse): void {
-    this.categoryService.delete(category.id).subscribe(() => {
+    this.categoryService.delete(category.id).then(() => {
       this.getCategories();
+      this.toastr.success('Category successfully deleted');
     });
   }
 

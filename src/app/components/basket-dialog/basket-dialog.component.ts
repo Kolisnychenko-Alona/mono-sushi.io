@@ -75,7 +75,4 @@ export class BasketDialogComponent implements OnInit {
     this.orderService.changeBasket.next(true);
   }
 
-  confirmOrder(): void {
-    console.log(this.basket);
-  }
 }

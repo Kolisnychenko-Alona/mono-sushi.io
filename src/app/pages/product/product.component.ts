@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/shared/services/product/product.service'
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit, OnDestroy {
-  public userProducts: Array<IProductResponse> = [];
+  public userProducts!: Array<IProductResponse>;
   private eventSubscription!: Subscription;
 
   constructor(
@@ -33,9 +33,16 @@ export class ProductComponent implements OnInit, OnDestroy {
     const categoryName = this.activatedRoute.snapshot.paramMap.get(
       'category'
     ) as string;
-    this.productService.getAllByCategory(categoryName).subscribe((data) => {
-      this.userProducts = data;
+    let products: Array<IProductResponse> = [];
+    this.productService.getAllByCategory(categoryName).then(data => {
+      data.forEach(doc => {
+        let product!: IProductResponse;
+        product = doc.data() as IProductResponse;;
+        product.id = doc.id;
+        products.push(product);
+      })
     });
+    this.userProducts = products;
   }
 
   productCount(product: IProductResponse, value: boolean): void {

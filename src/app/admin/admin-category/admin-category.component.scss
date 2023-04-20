@@ -30,7 +30,7 @@
          justify-content: flex-start;
          align-items: flex-end;
          &-fields {
-            width: 660px;
+            width: 680px;
             &-top {
                width: 660px;
                height: 80px;
@@ -61,10 +61,10 @@
                height: 80px;
                margin-bottom: 10px;
                input {
-                  width: 640px;
+                  width: 645px;
                   height: 40px;
                   font-size: 16px;
-                  padding: 15px 0 0 20px;
+                  padding: 15px 20px 0;
                   border-radius: 10px;
                   border: 1px solid $gray;
                   &.ng-touched.ng-invalid{

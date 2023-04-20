@@ -1,24 +1,105 @@
-<!-- <div class="container">
-   <div class="basket">
-      <div class="basket-info">
-         <div class="basket-info-product">
-            <img src="" alt="">
-            <p class="basket-info-product-name"></p>
-            <div class="basket-info-product-count">
-               <button >-</button>
-               <input type="text" [value]="1">
-               <button>+</button>
+<div class="container">
+   <ng-container *ngIf="orderDone">
+      <h2 class="order-done">Ваше замовлення успішно оформлено! Дякуємо за довіру!</h2>
+      <div class="to-home" (click)="toHome()" [routerLink]="[ '/home']">Повернутись на головну</div>
+   </ng-container>
+   <ng-container *ngIf="!orderDone">
+      <h1>Оформити замовлення</h1>
+      <section class="basket">
+         <table>
+            <tr *ngFor="let product of basketProducts">
+               <td><img [src]="product.imagePath" alt="product photo"></td>
+               <td><b>{{product.name}}</b></td>
+               <td>
+                  <div class="count">
+                     <button type="button" (click)="productCount(product, false)">-</button>
+                     <input type="text" [value]="product.count">
+                     <button type="button" (click)="productCount(product, true)">+</button>
+                  </div>
+               </td>
+               <td><b>{{product.price * product.count}}</b> грн</td>
+               <td><button type="button" (click)="deleteProduct(product)"><i class="uil uil-trash-alt"></i></button>
+               </td>
+            </tr>
+         </table>
+         <div class="basket_total">До сплати: <b>{{total}}</b> грн</div>
+      </section>
+      <section class="order-information">
+         <form class="order-information_form" [formGroup]="orderForm" (ngSubmit)="confirmOrder()">
+            <div class="cutlery">
+               <h3 class="title">Оберіть кількість приборів</h3>
+               <div class="cutlery_select">
+                  <select formControlName="cutleryCount">
+                     <option value="1" [defaultSelected]="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                  </select>
+                  <select formControlName="holdersCount">
+                     <option value="Навчальні тримачі" [defaultSelected]="1" disabled>Навчальні тримачі</option>
+                     <option value="0">0</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                  </select>
+               </div>
             </div>
-            <p class="basket-info-product-price"></p>
-            <i class="uil uil-trash-alt"></i>
-         </div>
-      </div> 
-      <div class="basket-order">
-         <div class="basket-order-total">Сума: </div>
-         <div class="basket-order-btn">
-            <button>Оформити замовлення</button>
-         </div>
-      </div>
-   </div>
-</div> -->
-<h1>Checkout works!</h1>
+            <div class="payment">
+               <h3 class="title">Спосіб оплати</h3>
+               <div class="payment_radio">
+                  <input type="radio" id="cash" name="payment" formControlName="payment" value="готівка">
+                  <label for="cash">Оплата готівкою</label>
+
+                  <input type="radio" id="cashless" name="payment" formControlName="payment"
+                     value="безготівковий розрахунок">
+                  <label for="cashless">Безготівкова оплата</label>
+               </div>
+            </div>
+            <div class="delivery">
+               <h3 class="title">Спосіб доставки</h3>
+               <div class="delivery_type">
+                  <input type="radio" id="delivery" name="delivery" value="доставка" formControlName="delivery"
+                     (change)="changeDelivery()">
+                  <label for="delivery">Доставка (У зв’язку із відключенням світла, якщо
+                     ліфт не працює кур’єр піднімається тільки до п’ятого поверху. Дякуємо
+                     за розуміння)</label>
+               </div>
+               <div class="delivery_type">
+                  <input type="radio" id="pickup" name="delivery" value="самовивіз" formControlName="delivery"
+                      (change)="changeDelivery()" >
+                  <label for="pickup">Самовивіз ( "Запечені моно макі з лососем" в
+                     подарунок )</label>
+               </div>
+               <div class="delivery_info">
+                  <div class="delivery_info-top">
+                     <input type="text" placeholder="Ім'я*" formControlName="name">
+                     <input type="text" placeholder="Телефон*" formControlName="phone">
+                  </div>
+                  <ng-container *ngIf="deliveryType == 'доставка'">
+                     <div class="delivery_info-address">
+                        <input type="text" placeholder="Вулиця*" formControlName="street">
+                        <input type="text" placeholder="Номер будинку*" formControlName="houseNumber">
+                        <input type="text" placeholder="Під'їзд" formControlName="entrance">
+                        <input type="text" placeholder="Квартира" formControlName="flat">
+                     </div>
+                  </ng-container>
+                  <ng-container *ngIf="deliveryType == 'самовивіз'">
+                     <select formControlName="address">
+                        <option value="1" [defaultSelected]="1" disabled>Оберіть адресу самовивозу</option>
+                        <option value="Чорновола 95">Чорновола 95</option>
+                        <option value="Володимира Великого 10Б">Володимира Великого 10Б</option>
+                     </select>
+                  </ng-container>                  
+               </div>
+            </div>
+            <div class="line"></div>
+            <div class="confirm">
+               <button type="submit" [disabled]="orderForm.invalid">оформити замовлення</button>
+            </div>
+         </form>
+      </section>
+   </ng-container>
+</div>

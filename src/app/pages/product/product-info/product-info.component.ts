@@ -31,7 +31,7 @@ export class ProductInfoComponent implements OnInit {
           name: 'name',
           path: 'path',
           imagePath: 'image',
-          id: 1
+          id: '1'
         },
         name: 'name',
         path: 'path',
@@ -40,7 +40,7 @@ export class ProductInfoComponent implements OnInit {
         price: 1,
         imagePath: 'image',
         count: 1,
-        id: 0
+        id:'0'
       }
     }
   }

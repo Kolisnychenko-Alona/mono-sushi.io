@@ -5,6 +5,6 @@ export interface IDiscountRequest {
   imagePath: string;
 }
 
-export interface IDiscountResponse extends IDiscountRequest{
-  id: number;
+export interface IDiscountResponse extends IDiscountRequest {
+  id: string;
 }

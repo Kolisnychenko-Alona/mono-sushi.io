@@ -34,30 +34,9 @@
                align-items: center;
                justify-content: space-between;
                mat-form-field{
-               width: 48%;
+                  width: 48%;
+               }
             }
-            }
-         }
-
-      }
-   }
-   .addresses{
-      width: 90%;
-      margin: 20px auto;
-      &-title{
-         width: 100%;
-         margin-bottom: 20px;
-         display: flex;
-         align-items: center;
-         .marker{
-            width: 25px;
-            height: 25px;
-            background-color: $main-color ;
-            text-align: center;
-            line-height: 25px;
-            font-weight: bold;
-            margin-right: 20px;
-            border-radius: 5px;
          }
       }
       .btn{

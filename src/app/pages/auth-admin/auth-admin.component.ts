@@ -34,11 +34,11 @@ export class AuthAdminComponent {
     });
   }
 
-  loginUser(): void {
+  loginAdmin(): void {
     const { email, password } = this.loginForm.value;
     this.login(email, password)
       .then(() => {
-        this.toastr.success('User successfully login');
+        this.toastr.success('Admin successfully login');
         this.loginForm.reset();
       })
       .catch((e) => {

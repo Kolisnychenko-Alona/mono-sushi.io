@@ -10,12 +10,12 @@
       <div class="selection-item">Преміум</div>
    </div>
    <div class="products">
-      <div class="products-one" *ngFor="let product of userProducts">
+      <div class="products-one" *ngFor="let product of userProducts" [routerLink]="[ '/product/'+product.category.path, product.id ]">
          <div class="products-one-image">
-            <img [routerLink]="[ '/product/'+product.category.path, product.id ]" [src]="product.imagePath" [alt]="product.name">
+            <img  [src]="product.imagePath" [alt]="product.name">
          </div>
          <div class="products-one-information">
-            <h3 [routerLink]="[ '/product/'+product.category.path, product.id ]" >{{product.name}}</h3>
+            <h3>{{product.name}}</h3>
             <div class="products-one-information-about">
                <p>{{product.description}}</p>
                <p><b>{{product.weight}}г</b></p>

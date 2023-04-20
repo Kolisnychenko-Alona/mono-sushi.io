@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IDiscountResponse } from 'src/app/shared/interfaces/IDiscount';
 import { DiscountService } from 'src/app/shared/services/discount/discount.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
@@ -13,7 +14,7 @@ export class AdminDiscountComponent implements OnInit {
   public isDown = false;
   public isAdding = false;
   public editStatus = false;
-  private currentDiscountId = 0;
+  private currentDiscountId!: string;
   public discountForm!: FormGroup;
   public date = new Date();
   public isUploaded = false;
@@ -23,7 +24,8 @@ export class AdminDiscountComponent implements OnInit {
   constructor(
     private discountService: DiscountService,
     private imageService: ImageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +55,7 @@ export class AdminDiscountComponent implements OnInit {
 
   getDiscounts(): void {
     this.discountService.getAll().subscribe((data) => {
-      this.adminDiscounts = data;
+      this.adminDiscounts = data as IDiscountResponse[];
     });
   }
 
@@ -61,12 +63,14 @@ export class AdminDiscountComponent implements OnInit {
     if (this.editStatus) {
       this.discountService
         .update(this.discountForm.value, this.currentDiscountId)
-        .subscribe(() => {
+        .then(() => {
           this.getDiscounts();
+          this.toastr.success('Discount successfully updated');
         });
     } else {
-      this.discountService.create(this.discountForm.value).subscribe(() => {
+      this.discountService.create(this.discountForm.value).then(() => {
         this.getDiscounts();
+        this.toastr.success('Discount successfully created');
       });
     }
     this.discountForm.reset();
@@ -89,8 +93,9 @@ export class AdminDiscountComponent implements OnInit {
   }
 
   deleteDiscount(discount: IDiscountResponse): void {
-    this.discountService.delete(discount.id).subscribe(() => {
+    this.discountService.delete(discount.id).then(() => {
       this.getDiscounts();
+      this.toastr.success('Discount successfully deleted');
     });
   }
 

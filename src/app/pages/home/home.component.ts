@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
   getProducts(): void {
     this.productService.getAll().subscribe((data) => {
-      this.userProducts = data;
+      this.userProducts = data as IProductResponse[];
     });
   }
   productCount(product: IProductResponse, value: boolean): void {

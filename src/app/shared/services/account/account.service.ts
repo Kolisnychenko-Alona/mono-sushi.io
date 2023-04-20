@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../../interfaces/user/user.interface';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,15 @@ export class AccountService {
   public isLogin$ = new Subject<boolean>();
   public isAdmin$ = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private afs: Firestore) {}
 
   login(credential: IUser): Observable<any> {
     return this.http.get(
       `${this.api.auth}?email=${credential.email}&password=${credential.password}`
     );
+  }
+  update(credential: IUser, id: string) {
+    const userDocumentReference = doc(this.afs, `users/${id}`);
+    return updateDoc(userDocumentReference, { ...credential });
   }
 }

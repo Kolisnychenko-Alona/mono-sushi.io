@@ -5,6 +5,7 @@ import { IProductResponse } from 'src/app/shared/interfaces/product/product.inte
 import { ProductService } from 'src/app/shared/services/product/product.service';
 import { CategoryService } from 'src/app/shared/services/category/category.service';
 import { ImageService } from 'src/app/shared/services/image/image.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-product',
@@ -18,14 +19,15 @@ export class AdminProductComponent implements OnInit {
   public adminProducts: Array<IProductResponse> = [];
   public productForm!: FormGroup;
   public editStatus = false;
-  private currentProductId = 0;
+  private currentProductId!: string;
   public isUploaded = false;
 
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
     private fb: FormBuilder,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -57,23 +59,26 @@ export class AdminProductComponent implements OnInit {
 
   getCategories(): void {
     this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data;
+      this.adminCategories = data as ICategoryResponse[];
     });
   }
   getProducts(): void {
     this.productService.getAll().subscribe((data) => {
-      this.adminProducts = data;
+      this.adminProducts = data as IProductResponse[];
     });
   }
   saveProduct(): void {
     if (this.editStatus) {
-      this.productService.update(this.productForm.value, this.currentProductId).subscribe(() => {
-        this.getProducts();
-      })
-      
+      this.productService
+        .update(this.productForm.value, this.currentProductId)
+        .then(() => {
+          this.getProducts();
+          this.toastr.success('Product successfully updated');
+        });
     } else {
-      this.productService.create(this.productForm.value).subscribe(() => {
+      this.productService.create(this.productForm.value).then(() => {
         this.getProducts();
+        this.toastr.success('Product successfully created');
       });
     }
     this.editStatus = false;
@@ -82,7 +87,6 @@ export class AdminProductComponent implements OnInit {
     this.isUploaded = false;
   }
   editProduct(product: IProductResponse): void {
-    
     this.productForm.patchValue({
       category: product.category,
       name: product.name,
@@ -90,7 +94,7 @@ export class AdminProductComponent implements OnInit {
       description: product.description,
       weight: product.weight,
       price: product.price,
-      imagePath: product.imagePath
+      imagePath: product.imagePath,
     });
     this.editStatus = true;
     this.isUploaded = true;
@@ -98,14 +102,16 @@ export class AdminProductComponent implements OnInit {
     this.currentProductId = product.id;
   }
   deleteProduct(product: IProductResponse): void {
-    this.productService.delete(product.id).subscribe(() => {
+    this.productService.delete(product.id).then(() => {
       this.getProducts();
-    })
-   }
-  
-  upload(event: any): void{
+      this.toastr.success('Product successfully deleted');
+    });
+  }
+
+  upload(event: any): void {
     const file = event.target.files[0];
-    this.imageService.uploadFile('images/products', file.name, file)
+    this.imageService
+      .uploadFile('images/products', file.name, file)
       .then((data) => {
         this.isUploaded = true;
         this.productForm.patchValue({ imagePath: data });
@@ -116,15 +122,16 @@ export class AdminProductComponent implements OnInit {
   }
 
   deleteImage(): void {
-    this.imageService.deleteUploadFile(this.valueByControl('imagePath'))
-      .then(()=> {
+    this.imageService
+      .deleteUploadFile(this.valueByControl('imagePath'))
+      .then(() => {
         console.log('File deleted');
         this.isUploaded = false;
-        this.productForm.patchValue({imagePath: null});
+        this.productForm.patchValue({ imagePath: null });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   valueByControl(control: string): string {

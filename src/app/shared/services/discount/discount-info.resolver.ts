@@ -4,18 +4,20 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { IDiscountResponse } from '../../interfaces/IDiscount';
+import { Observable } from 'rxjs';
 import { DiscountService } from './discount.service';
+import { DocumentData } from '@angular/fire/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class DiscountInfoResolver implements Resolve<IDiscountResponse> {
+export class DiscountInfoResolver implements Resolve<DocumentData> {
+  constructor(private discountService: DiscountService) {}
 
-  constructor( private discountService: DiscountService){}
-
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IDiscountResponse> {
-    return this.discountService.getOne(Number(route.paramMap.get('id')));
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<DocumentData> {
+    return this.discountService.getOne(route.paramMap.get('id') as string);
   }
 }

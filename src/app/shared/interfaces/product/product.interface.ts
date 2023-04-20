@@ -8,9 +8,9 @@ export interface IProductRequest{
    weight: number;
    price: number;
    imagePath: string;
-   count: number;
+   count: 1;
 }
 
 export interface IProductResponse extends IProductRequest{
-   id: number;
+   id: string;
 }

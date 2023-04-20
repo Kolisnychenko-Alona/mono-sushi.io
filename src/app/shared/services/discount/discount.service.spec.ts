@@ -31,7 +31,7 @@ describe('DiscountService', () => {
         title: 'title',
         imagePath: 'image',
         text: 'text',
-        id: 1,
+        id: '1',
       },
     ];
     service.getAll().subscribe((response) => expect(response).toBe(data));
@@ -47,7 +47,7 @@ describe('DiscountService', () => {
       text: 'text',
       imagePath: 'image',
     };
-    service.create(data).subscribe((response) => expect(response).toBeNull());
+    service.create(data).then((response) => expect(response).toBeNull());
     const req = http.expectOne(url + `/discounts`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toBe(data);
@@ -55,8 +55,8 @@ describe('DiscountService', () => {
   });
 
   it('can test HttpClient.delete ', () => {
-    const id = 1;
-    service.delete(id).subscribe((response) => expect(response).toBeNull());
+    const id = '1';
+    service.delete(id).then((response) => expect(response).toBeNull());
     const req = http.expectOne(url + `/discounts/` + id);
     expect(req.request.method).toBe('DELETE');
     req.flush(null);
@@ -69,8 +69,8 @@ describe('DiscountService', () => {
       text: 'text',
       imagePath: 'image',
     };
-    const id = 1;
-    service.update(data, id).subscribe((response) => {
+    const id = '1';
+    service.update(data, id).then((response) => {
       expect(response).toBeTruthy();
     });
     const req = http.expectOne(url + `/discounts/` + id);

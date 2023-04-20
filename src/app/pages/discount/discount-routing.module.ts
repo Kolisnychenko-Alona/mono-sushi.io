@@ -4,7 +4,6 @@ import { DiscountInfoResolver } from 'src/app/shared/services/discount/discount-
 import { DiscountInfoComponent } from './discount-info/discount-info.component';
 import { DiscountComponent } from './discount.component';
 
-
 const routes: Routes = [
   {
     path: '',

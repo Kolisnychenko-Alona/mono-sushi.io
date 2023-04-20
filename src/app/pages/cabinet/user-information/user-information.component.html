@@ -22,14 +22,7 @@
             </mat-form-field>
          </div>
       </form>
-   </div>
-   <div class="addresses">
-      <div class="addresses-title">
-         <div class="marker">2</div>
-         <h2><b>Адреси</b></h2>
-      </div>
       <div class="btn">
-         <button mat-raised-button color="primary" type="button" (click)="addAddress()">Додати адресу</button>
          <button mat-raised-button color="primary" [disabled]="personalForm.invalid" type="button"
             (click)="saveChanges()">Зберегти зміни</button>
       </div>

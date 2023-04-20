@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
   loadBasket(): void {
     if (localStorage.length > 0 && localStorage.getItem('basket')) {
       this.basket = JSON.parse(localStorage.getItem('basket') as string);
-    }
+    } else this.basket = [];
     this.getTotalPrice();
   }
 
@@ -67,15 +67,15 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  getCategories(): void {
-    this.categoryService.getAll().subscribe((data) => {
-      this.userCategories = data;
-    });
-  }
-
   updateBasket(): void {
     this.orderService.changeBasket.subscribe(() => {
       this.loadBasket();
+    });
+  }
+
+  getCategories(): void {
+    this.categoryService.getAll().subscribe((data) => {
+      this.userCategories = data as ICategoryResponse[];
     });
   }
   @HostListener('window:scroll', [])
